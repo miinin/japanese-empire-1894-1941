@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Japanese Empire, 1894–1941</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a woodblock-print broadsheet. Indigo ink on cool paper, one vermilion seal colour for emphasis,
+   vertical kanji in the hero, a single reading column with wide "evidence" panels for timeline, chart and tasks. */
+:root{
+  --paper:#f3f4f6;
+  --card:#fcfcfb;
+  --ink:#141823;
+  --muted:#525969;
+  --line:#d3d7df;
+  --indigo:#1f3768;
+  --shu:#b8301c;
+  --shu-soft:#f6e3df;
+  --indigo-soft:#e3e8f3;
+  --good:#006300;
+  --bad:#a8231b;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --grid:#e1e0d9; --axis:#9c9a92; --axis-text:#5f5d57;
+  --display:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f121a; --card:#1a1a19; --ink:#eceef3; --muted:#a8aebd; --line:#343b4d;
+    --indigo:#a9bdea; --shu:#f27a64; --shu-soft:#3a1f1b; --indigo-soft:#1c2540;
+    --good:#5fd35f; --bad:#ff8a80;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --grid:#2c2c2a; --axis:#55554f; --axis-text:#a3a199;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f121a; --card:#1a1a19; --ink:#eceef3; --muted:#a8aebd; --line:#343b4d;
+  --indigo:#a9bdea; --shu:#f27a64; --shu-soft:#3a1f1b; --indigo-soft:#1c2540;
+  --good:#5fd35f; --bad:#ff8a80;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --grid:#2c2c2a; --axis:#55554f; --axis-text:#a3a199;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--display);text-wrap:balance;line-height:1.2;margin:0}
+h2{font-size:clamp(28px,4vw,40px);font-weight:800;color:var(--indigo)}
+h3{font-size:22px;font-weight:800}
+h4{font-size:18px;font-weight:600}
+p{margin:0}
+a{color:var(--indigo);text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--shu);outline-offset:2px;border-radius:4px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:8px;text-decoration:none}
+.skip:focus{top:12px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.col{max-width:68ch}
+.stack{display:flex;flex-direction:column;gap:16px}
+.muted{color:var(--muted)}
+
+/* nav */
+nav.top{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;gap:12px;align-items:center;height:52px;position:relative}
+nav.top .brand{font-family:var(--display);font-weight:800;color:var(--shu);font-size:18px;text-decoration:none;flex:none}
+.menubtn{flex:none;font:500 15px var(--body);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;display:flex;align-items:center;gap:8px}
+.menubtn:hover{border-color:var(--indigo)}
+.menubtn .chev{font-size:11px;transition:transform .15s}
+.menubtn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.cursec{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px;color:var(--muted)}
+.menu{position:absolute;top:52px;left:20px;right:20px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.18);padding:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.menu[hidden]{display:none}
+.menu a{display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink);font-size:15px;font-weight:500;padding:8px 10px;border-radius:8px}
+.menu a .mono{font-size:12px;color:var(--muted);min-width:20px}
+.menu a:hover{background:var(--indigo-soft)}
+.menu a[aria-current="true"]{background:var(--indigo-soft);color:var(--indigo);font-weight:700}
+@media (max-width:640px){.menu{grid-template-columns:1fr 1fr;left:12px;right:12px}.cursec{display:none}}
+.navprog{flex:none;display:flex;align-items:center;gap:8px;margin-left:10px;font-family:var(--mono);font-size:13px;color:var(--muted);text-decoration:none}
+.navprog .bar{width:70px;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.navprog .bar i{display:block;height:100%;background:var(--shu);width:0;transition:width .3s}
+
+/* hero */
+header.hero{padding:56px 0 40px;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start}
+.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--shu)}
+.hero h1{font-size:clamp(40px,7vw,78px);font-weight:800;letter-spacing:-.01em;margin:14px 0 18px;color:var(--ink)}
+.hero h1 .yrs{display:block;color:var(--indigo);font-size:.62em;margin-top:6px}
+.lede{font-size:20px;max-width:58ch;color:var(--muted)}
+.kanji{writing-mode:vertical-rl;font-family:var(--display);font-weight:800;font-size:clamp(56px,8vw,92px);line-height:1;color:var(--indigo);letter-spacing:.08em;position:relative;padding-right:4px}
+.seal{position:absolute;left:-46px;bottom:-6px;width:54px;height:54px;border:3px solid var(--shu);color:var(--shu);border-radius:6px;display:grid;place-items:center;font-size:13px;writing-mode:horizontal-tb;font-family:var(--mono);line-height:1.1;text-align:center;transform:rotate(-6deg);letter-spacing:0}
+.kanji-gloss{font-size:13px;color:var(--muted);margin-top:10px;max-width:16ch}
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:36px}
+.glance div{background:var(--card);padding:14px 16px}
+.glance b{display:block;font-family:var(--display);font-size:22px;color:var(--indigo)}
+.glance span{font-size:14px;color:var(--muted)}
+.hook{margin-top:28px;border-left:4px solid var(--shu);padding:6px 0 6px 18px;font-family:var(--display);font-size:22px;font-weight:600;max-width:60ch}
+.hook small{display:block;font-family:var(--body);font-size:14px;font-weight:400;color:var(--muted);margin-top:6px}
+
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.sec-head .eyebrow{color:var(--muted)}
+.keyidea{max-width:68ch;background:var(--indigo-soft);border-radius:8px;padding:10px 14px;font-size:16px}
+.keyidea b{color:var(--indigo)}
+.objref{font-family:var(--mono);font-size:12px;color:var(--indigo);border:1px solid var(--indigo);border-radius:4px;padding:1px 6px;white-space:nowrap}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 22px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.obj{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0;margin:0}
+.obj li{list-style:none;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px 14px 58px;position:relative}
+.obj li .on{position:absolute;left:14px;top:13px;font-family:var(--display);font-weight:800;font-size:20px;color:var(--shu)}
+.tag{display:inline-block;font-family:var(--mono);font-size:12px;padding:2px 8px;border-radius:999px;background:var(--indigo-soft);color:var(--indigo);margin:0 6px 6px 0}
+.tag.red{background:var(--shu-soft);color:var(--shu)}
+.lvl{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:4px;vertical-align:2px}
+.lvl.sup{background:var(--indigo-soft);color:var(--indigo)}
+.lvl.cha{background:var(--shu-soft);color:var(--shu)}
+
+/* paths + route */
+.paths{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.path{font:inherit;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:10px;padding:14px 16px;cursor:pointer;color:var(--ink);display:flex;flex-direction:column;gap:4px}
+.path b{font-family:var(--display);font-size:20px}
+.path span{font-size:14px;color:var(--muted)}
+.path[aria-pressed="true"]{border-color:var(--shu);background:color-mix(in srgb,var(--shu) 6%,var(--card))}
+.path:hover{border-color:var(--indigo)}
+.pathinfo{margin-top:12px}
+.route{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.route li{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;padding:8px 10px;border-radius:8px;background:var(--card);border:1px solid var(--line)}
+.route .st{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:13px;font-weight:700}
+.route li.done .st{background:var(--good);border-color:var(--good);color:#fff}
+.route li.done a{color:var(--muted)}
+.route .t{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.route a{text-decoration:none;color:var(--ink);font-weight:500}
+.route a:hover{text-decoration:underline}
+.progline{display:flex;align-items:center;gap:12px;margin-bottom:10px;font-family:var(--mono);font-size:14px}
+.progline .bar{flex:1;height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.progline .bar i{display:block;height:100%;background:var(--shu);width:0;transition:width .3s}
+.readbtn{margin-top:24px}
+
+/* chart */
+.chart-card{padding:20px 18px 12px}
+.chart-scroll{overflow-x:auto}
+#empireChart{display:block;width:100%;min-width:640px;height:auto}
+#empireChart .hit:focus{outline:none}
+#empireChart .hit:focus-visible{stroke:var(--shu);stroke-width:2}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:14px;color:var(--muted);margin:8px 0 6px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--paper);font-size:13px;padding:8px 10px;border-radius:6px;max-width:260px;opacity:0;transition:opacity .12s;z-index:50;line-height:1.4}
+details{font-size:15px}
+details summary{cursor:pointer;color:var(--indigo);font-weight:500}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:500}
+
+/* timeline */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chip{font:500 14px var(--body);border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--indigo);border-color:var(--indigo);color:var(--paper)}
+.chip:hover{border-color:var(--indigo)}
+.phase-block{margin-bottom:34px}
+.phase-title{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.phase-title .num{font-family:var(--display);font-weight:800;font-size:30px;color:var(--shu)}
+.phase-title h3{font-size:24px}
+.phase-title .mono{color:var(--muted);font-size:14px}
+.events{list-style:none;margin:0 0 0 8px;padding:0;border-left:2px solid var(--line)}
+.ev{position:relative;padding:4px 0 16px 26px}
+.ev::before{content:"";position:absolute;left:-7px;top:12px;width:12px;height:12px;border-radius:50%;background:var(--card);border:2px solid var(--pc,var(--indigo))}
+.ev.tp::before{background:var(--shu);border-color:var(--shu)}
+.ev .d{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.ev h4{margin:2px 0 4px}
+.ev p{max-width:68ch}
+.ev .tpflag{font-family:var(--mono);font-size:11px;color:var(--shu);border:1px solid var(--shu);border-radius:4px;padding:0 5px;margin-left:8px;vertical-align:2px;white-space:nowrap}
+.think{margin:4px 0 0 34px;max-width:68ch;border:1px dashed var(--shu);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.think .eyebrow{font-size:12px}
+
+/* drivers */
+.driver{display:flex;flex-direction:column;gap:10px}
+.driver .k{font-family:var(--mono);font-size:12px;color:var(--shu);text-transform:uppercase;letter-spacing:.06em}
+.driver .but{border-top:1px dashed var(--line);padding-top:10px;font-size:15px;color:var(--muted)}
+.driver .but b{color:var(--ink)}
+.feature{background:#1f3768;color:#f3f4f6;border-radius:12px;padding:26px 28px}
+.feature h3{color:#fff}
+.feature p,.feature li{color:#e4e8f2}
+.feature .eyebrow{color:#ffc2b6}
+:root[data-theme="dark"] .feature{background:#1c2540}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .feature{background:#1c2540}}
+.steps{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+.steps li{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:baseline}
+.steps .mono{color:#ffc2b6;font-size:13px}
+.fin{border:2px solid var(--shu);border-radius:12px;padding:22px 24px;background:var(--card)}
+.fin .eyebrow{margin-bottom:6px}
+ul.tight{margin:6px 0 0;padding-left:20px}
+ul.tight li{margin:4px 0}
+
+/* historians */
+.hist{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.hist .card{display:flex;flex-direction:column;gap:8px}
+.hist .who{font-size:14px;color:var(--muted)}
+.spectrum{display:grid;grid-template-columns:1fr 1fr;font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:12px}
+.spectrum span:last-child{text-align:right}
+
+/* sources */
+.src{border-left:4px solid var(--indigo);background:var(--card);border-radius:0 10px 10px 0;padding:18px 22px}
+.src .lab{font-family:var(--display);font-weight:800;font-size:20px;color:var(--shu)}
+.src .prov{font-size:14px;color:var(--muted);margin:2px 0 10px}
+.src blockquote{margin:0;font-family:var(--display);font-size:18px;line-height:1.6}
+.qs{display:grid;gap:12px;margin-top:22px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.q .qh{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.q .marks{font-family:var(--mono);font-size:13px;color:var(--shu);white-space:nowrap}
+.scaf{background:var(--paper);border-radius:8px;padding:10px 14px}
+.scaf ul{margin:6px 0 0;padding-left:20px}
+.ms{display:none;background:var(--indigo-soft);border-radius:8px;padding:12px 14px;font-size:15px}
+.ms.open{display:block}
+.selfcheck{display:grid;gap:4px;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.selfcheck label{font-weight:400;display:flex;gap:8px;align-items:flex-start}
+
+/* controls */
+button.btn{font:500 15px var(--body);background:var(--indigo);color:var(--paper);border:0;border-radius:8px;padding:9px 16px;cursor:pointer}
+button.btn:hover{filter:brightness(1.1)}
+button.btn.ghost{background:transparent;color:var(--indigo);border:1px solid var(--indigo)}
+button.btn.small{font-size:14px;padding:6px 12px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+textarea,input[type="text"]{width:100%;font:400 15px/1.5 var(--body);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px 12px;resize:vertical}
+textarea:focus,input[type="text"]:focus{border-color:var(--indigo)}
+label{font-weight:500;font-size:15px}
+.status{font-size:14px;color:var(--muted);min-height:1.4em}
+fieldset{border:0;padding:0;margin:0}
+legend{padding:0}
+
+/* tasks */
+.task{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:14px}
+.task-head{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.task-head .tn{font-family:var(--display);font-weight:800;font-size:34px;color:var(--shu);line-height:1}
+.task-head .meta{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.order-pool,.order-done{display:flex;flex-wrap:wrap;gap:8px;min-height:44px}
+.order-done{border:1px dashed var(--line);border-radius:10px;padding:8px}
+.ochip{font:500 14px var(--body);border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:8px 12px;border-radius:8px;cursor:pointer;text-align:left}
+.ochip:hover{border-color:var(--indigo)}
+.ochip.placed{background:var(--indigo-soft);border-color:var(--indigo)}
+.ochip.ok{border-color:var(--good);background:color-mix(in srgb,var(--good) 12%,var(--card))}
+.ochip.no{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--card))}
+.gauge{display:grid;grid-template-columns:minmax(200px,1.4fr) 1fr 1fr;gap:10px 18px;align-items:center}
+.gauge .gh{font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase}
+.gauge .f b{display:block;font-size:15px}
+.gauge .f span{font-size:13px;color:var(--muted)}
+input[type="range"]{width:100%;accent-color:var(--indigo)}
+.r41{accent-color:var(--s2)}
+.rv{font-family:var(--mono);font-size:13px;color:var(--muted)}
+#gaugeChart{width:100%;height:auto;display:block}
+.vote{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.vote .card{display:flex;flex-direction:column;gap:8px}
+.vote .yr{font-family:var(--display);font-weight:800;font-size:28px;color:var(--indigo)}
+.vote .card p{font-size:15px}
+.vote .card .con{color:var(--muted);font-size:14px}
+.plan{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.plan .full{grid-column:1/-1}
+.plan > div{display:flex;flex-direction:column;gap:6px}
+.sim{border:1px solid var(--line);border-radius:10px;padding:18px;background:var(--paper);display:flex;flex-direction:column;gap:12px}
+.sim .when{font-family:var(--mono);font-size:13px;color:var(--shu)}
+.sim .opts{display:grid;gap:8px}
+.sim button.opt{font:400 15px var(--body);text-align:left;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:10px 12px;cursor:pointer}
+.sim button.opt:hover:not(:disabled){border-color:var(--indigo)}
+.sim button.opt.chosen{border-color:var(--indigo);border-width:2px}
+.sim .res{display:grid;gap:8px}
+.sim .res > div{background:var(--card);border-radius:8px;padding:10px 14px;font-size:15px}
+.sim .res .hist{border-left:4px solid var(--shu)}
+.sim .res .cf{border-left:4px solid var(--indigo)}
+.simdots{display:flex;gap:6px}
+.simdots i{width:28px;height:6px;border-radius:3px;background:var(--line)}
+.simdots i.on{background:var(--shu)}
+.sa{display:grid;gap:10px}
+.sa .sarow{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.sa .opts3{display:flex;gap:4px;flex-wrap:wrap}
+.sa .opts3 label{font-weight:400;font-size:14px;display:flex;gap:4px;align-items:center;border:1px solid var(--line);border-radius:6px;padding:4px 8px;cursor:pointer}
+.sa .opts3 input:checked + span{font-weight:700;color:var(--indigo)}
+
+/* quiz */
+.quiz{display:grid;gap:14px}
+.qq{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.qq .opts{display:grid;gap:8px;margin-top:10px}
+.qq button.opt{font:400 15px var(--body);text-align:left;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:10px 12px;cursor:pointer}
+.qq button.opt:hover:not(:disabled){border-color:var(--indigo)}
+.qq button.opt.right{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--card))}
+.qq button.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--card))}
+.qq .why{margin-top:10px;font-size:15px;color:var(--muted);display:none}
+.qq .why.show{display:block}
+.score{margin-top:16px;background:var(--ink);color:var(--paper);border-radius:999px;padding:8px 18px;font-family:var(--mono);font-size:14px;width:max-content}
+
+/* glossary */
+.gloss{display:grid;grid-template-columns:repeat(2,1fr);gap:0 28px;margin:0}
+.gloss div{padding:12px 0;border-bottom:1px solid var(--line)}
+.gloss dt{font-weight:700}
+.gloss dt .jp{font-family:var(--display);color:var(--shu);font-weight:600;margin-left:6px}
+.gloss dd{margin:2px 0 0;font-size:15px;color:var(--muted)}
+.gloss dd.fi{color:var(--ink);font-size:14px}
+.gloss dd.fi::before{content:"FI ";font-family:var(--mono);font-size:11px;color:var(--indigo)}
+
+/* reading list */
+.refs{margin:0;padding-left:20px;display:grid;gap:8px;font-size:15px}
+.refs li{max-width:80ch}
+
+/* teacher */
+.plan-table td:first-child{font-family:var(--mono);white-space:nowrap;color:var(--shu)}
+.plan-table td:nth-child(2){font-weight:700;white-space:nowrap}
+footer{padding:40px 0 60px;font-size:14px;color:var(--muted)}
+
+@media (max-width:860px){
+  .grid3,.vote{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .hero-grid{grid-template-columns:1fr}
+  .kanji-box{display:none}
+  .glance{grid-template-columns:1fr 1fr}
+  .grid2,.grid3,.obj,.hist,.vote,.plan,.gloss,.paths{grid-template-columns:1fr}
+  .gauge{grid-template-columns:1fr 1fr}
+  .gauge .f{grid-column:1/-1}
+  .gauge .gh.f0{display:none}
+  .steps li{grid-template-columns:1fr;gap:2px}
+  .think{margin-left:0}
+  .navprog .bar{display:none}
+  .sa .sarow{grid-template-columns:1fr}
+  body{font-size:16px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the lesson</a>
+
+<nav class="top" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top" lang="ja" aria-label="Back to top">帝国</a>
+    <button class="menubtn" type="button" id="menuBtn" aria-expanded="false" aria-controls="navlinks">Sections <span class="chev" aria-hidden="true">▼</span></button>
+    <span class="cursec" id="curSec" aria-live="off"></span>
+    <div class="menu" id="navlinks" hidden>
+      <a href="#start"><span class="mono">00</span>Start here</a>
+      <a href="#overview"><span class="mono">01</span>Overview</a>
+      <a href="#timeline"><span class="mono">02</span>Timeline</a>
+      <a href="#explain"><span class="mono">03</span>Why expand?</a>
+      <a href="#pearl"><span class="mono">04</span>Road to Pearl Harbor</a>
+      <a href="#historians"><span class="mono">05</span>Historians</a>
+      <a href="#sources"><span class="mono">06</span>Sources (Paper 1)</a>
+      <a href="#tasks"><span class="mono">07</span>Tasks</a>
+      <a href="#quiz"><span class="mono">08</span>Quiz</a>
+      <a href="#glossary"><span class="mono">09</span>Key terms</a>
+      <a href="#reading"><span class="mono">10</span>Reading list</a>
+      <a href="#teacher"><span class="mono">11</span>Teacher notes</a>
+      <a href="#about"><span class="mono">12</span>About and feedback</a>
+    </div>
+    <a class="navprog" href="#start" aria-label="Your progress, go to route"><span class="bar"><i id="navbar"></i></span><span id="navcount">0/12</span></a>
+  </div>
+</nav>
+
+<main id="main">
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">IB Diploma History · DP2 · The move to global war</div>
+        <h1>The Japanese Empire <span class="yrs">1894 – 1941</span></h1>
+        <p class="lede">From the war with Qing China to the attack on Pearl Harbor: how a state that had been forced open by American warships in 1853 built an empire in Asia, and why, 88 years later, it chose war with the United States.</p>
+      </div>
+      <div class="kanji-box" aria-hidden="true">
+        <div class="kanji" lang="ja">大日本帝国<span class="seal">1894<br>1941</span></div>
+        <div class="kanji-gloss">Dai Nippon Teikoku, “the Empire of Great Japan”</div>
+      </div>
+    </div>
+
+    <div class="glance">
+      <div><b>75 min</b><span>core lesson, plus homework</span></div>
+      <div><b>7 tasks</b><span>individual, pair and whole-class</span></div>
+      <div><b>3 paths</b><span>support · core · challenge</span></div>
+      <div><b>Paper 1 + 2</b><span>source practice and essay plan</span></div>
+    </div>
+
+    <p class="hook">Was Pearl Harbor the logical end of fifty years of expansion, or a gamble taken by a regime that had run out of options?
+      <small>This is the lesson’s big question. You will vote on it in Task 4, test it in the simulation (Task 5) and answer it in the essay plan (Task 6).</small></p>
+  </div>
+</header>
+
+<!-- START -->
+<section id="start">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">00 · Start here</div>
+      <h2>Choose your path and follow the route</h2>
+      <p class="col muted">Everyone works towards the same goals. Pick the path that fits you today. You can change it at any time and go at your own pace.</p>
+    </div>
+    <div class="paths" role="group" aria-label="Choose a learning path">
+      <button class="path" type="button" id="path-support" data-path="support" aria-pressed="false"><b>Support</b><span>Short steps, key terms first, sentence starters open in every writing task.</span></button>
+      <button class="path" type="button" id="path-core" data-path="core" aria-pressed="true"><b>Core</b><span>The full route in the order of the lesson. Help available when you need it.</span></button>
+      <button class="path" type="button" id="path-challenge" data-path="challenge" aria-pressed="false"><b>Challenge</b><span>The full route plus extension tasks marked <span class="lvl cha">Challenge</span>, for HL and grade 7.</span></button>
+    </div>
+    <div class="card pathinfo" id="pathInfo" aria-live="polite"></div>
+
+    <div class="card" style="margin-top:20px">
+      <h3>Your route</h3>
+      <p class="muted" style="font-size:15px;margin:4px 0 12px">Tasks tick themselves off when you complete them. Reading sections have a “Mark as read” button at the end. Progress is saved in this browser only.</p>
+      <div class="progline"><span class="bar"><i id="routebar"></i></span><span id="routecount">0 of 12 done</span></div>
+      <ol class="route" id="route"></ol>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">01 · Overview</div>
+      <h2>What you should be able to do after this lesson</h2>
+      <p class="col muted">Each task is labelled with the goals it practises, for example <span class="objref">G2</span>. In the exit ticket you rate yourself against these four goals.</p>
+    </div>
+    <ol class="obj">
+      <li><span class="on">G1</span><b>Chronology.</b> Place the key events of Japanese expansion, 1894–1941, in order and explain how each one led to the next.</li>
+      <li><span class="on">G2</span><b>Causation.</b> Explain the political, economic, ideological and strategic causes of expansion, and judge which mattered most in 1931 and in 1941.</li>
+      <li><span class="on">G3</span><b>International response.</b> Explain why the League of Nations and the Western powers failed to stop Japan, and why the US used economic pressure.</li>
+      <li><span class="on">G4</span><b>Sources and perspectives.</b> Analyse primary sources for origin, purpose and content, and use historians’ interpretations in an argument.</li>
+    </ol>
+
+    <div class="grid2" style="margin-top:24px">
+      <div class="card stack">
+        <h3>Where this fits in the IB course</h3>
+        <p><span class="tag red">Paper 1</span> Prescribed subject: <b>The move to global war</b>, case study 1: <b>Japanese expansion in East Asia, 1931–1941</b>.</p>
+        <p><span class="tag">Paper 2</span> World history topic: <b>Causes and effects of 20th-century wars</b> (the Second World War in the Pacific).</p>
+        <p><span class="tag">HL Paper 3</span> History of Asia and Oceania: Japan’s modernization and expansion.</p>
+        <p class="muted" style="font-size:14px">The years 1894–1930 are background. The examined case study starts in 1931, but you cannot explain 1931 without them.</p>
+      </div>
+      <div class="card">
+        <h3>The big picture in 60 seconds <span class="lvl sup">Support: start here</span></h3>
+        <ul class="tight">
+          <li><b>1894–1912:</b> Japan wins wars against China (1895) and Russia (1905) and takes Taiwan and Korea. It is the first non-Western power to defeat a European great power in modern times.</li>
+          <li><b>1912–1930:</b> Japan joins the Western system after the First World War, but feels cheated and disrespected by it. Politics at home becomes more democratic, and also more unstable.</li>
+          <li><b>1931–1936:</b> The Depression hits. The army in Manchuria acts on its own and creates Manchukuo. Japan leaves the League of Nations. Assassinations push civilian politicians aside.</li>
+          <li><b>1937–1941:</b> Full war with China becomes a stalemate. Japan needs resources, so it moves south. The US answers with an oil embargo, and Japan decides to strike first.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card chart-card" style="margin-top:24px">
+      <h3>Fifty years of expansion</h3>
+      <p class="muted" style="font-size:15px;margin-top:4px">Each bar shows when Japan gained control of a territory, up to December 1941. Point at a bar, or move to it with the Tab key, for details. The same data is in the table below the chart.</p>
+      <div class="legend" id="chartLegend"></div>
+      <div class="chart-scroll"><svg id="empireChart" viewBox="0 0 900 470" role="group" aria-label="Range chart: territories controlled by Japan, 1894 to 1941. Each bar can be focused for details."></svg></div>
+      <details style="margin-top:8px"><summary>Show the chart as a table</summary><div style="overflow-x:auto"><table id="empireTable"><caption class="sr-only">Territories controlled by Japan</caption><thead><tr><th scope="col">Territory</th><th scope="col">From</th><th scope="col">To</th><th scope="col">How</th></tr></thead><tbody></tbody></table></div></details>
+      <p style="font-size:14px;margin-top:10px" class="muted">Want a real map? Open the maps in the <a href="https://en.wikipedia.org/wiki/Empire_of_Japan">Wikipedia article on the Empire of Japan</a> (opens outside this page) and compare them with the chart.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">02 · Timeline · <span class="objref">G1</span></div>
+      <h2>Four phases, one road</h2>
+      <p class="keyidea"><b>Key idea:</b> each victory raised Japan’s ambitions and its fear of losing what it had won. Red dots mark possible turning points.</p>
+      <p class="col muted">Read one phase at a time with the filter. After each phase, stop and answer the question before you read on.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filter timeline by phase" id="phaseFilters"></div>
+    <div id="timelineList"></div>
+    <div class="readbtn" data-read="timeline"></div>
+  </div>
+</section>
+
+<!-- EXPLAIN -->
+<section id="explain">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">03 · Causation · <span class="objref">G2</span> <span class="objref">G3</span></div>
+      <h2>Why did Japan expand?</h2>
+      <p class="keyidea"><b>Key idea:</b> no single cause explains expansion. The causes connected, and their weight changed between 1931 and 1941.</p>
+      <p class="col muted">Strong IB answers do not list causes. They weigh them and show how they connect. Each card ends with a counter-argument for you to use.</p>
+    </div>
+
+    <div class="grid3">
+      <article class="card driver">
+        <div class="k">Strategic</div>
+        <h3>Security and the “line of advantage”</h3>
+        <p>Meiji leaders believed Japan would be colonised unless it became strong. In 1890 Prime Minister Yamagata Aritomo argued that Japan had to defend not only its borders (the “line of sovereignty”) but also a wider zone around them (the “line of advantage”). Korea, and later Manchuria, were treated as that buffer against Russia and, after 1917, against Soviet communism.</p>
+        <p class="but"><b>But:</b> by 1937 Japan was attacking China itself, and in 1941 it went to war with the strongest economy on earth. Security does not explain the scale of these decisions.</p>
+      </article>
+      <article class="card driver">
+        <div class="k">Economic</div>
+        <h3>Resources, markets and the Depression</h3>
+        <p>Japan had little coal, iron or oil and a fast-growing population. The 1929 crash ruined the silk export trade, and rural incomes collapsed. Manchuria offered coal, iron, soybeans and land for settlers. The army’s planners wanted <i>autarky</i>: an empire that could fight a long “total war” without imports.</p>
+        <p class="but"><b>But:</b> Manchukuo cost more than it earned for years, and the China war made Japan <i>more</i> dependent on American oil and scrap metal, not less.</p>
+      </article>
+      <article class="card driver">
+        <div class="k">Political</div>
+        <h3>A constitution that let the military act alone</h3>
+        <p>Under the Meiji Constitution (1889) the army and navy answered to the Emperor, not to the cabinet (the “right of supreme command”). The service ministers had to be serving officers, so the army could bring down a government by withdrawing its minister. In Manchuria the Kwantung Army created facts on the ground and Tokyo accepted them.</p>
+        <p class="but"><b>But:</b> Tokyo approved most of these moves afterwards, and the public and press cheered them. The army was not acting against the nation’s will.</p>
+      </article>
+      <article class="card driver">
+        <div class="k">Ideological</div>
+        <h3>Emperor, nation and “Asia for the Asians”</h3>
+        <p>Schools taught loyalty to the Emperor and the uniqueness of the national polity (<i>kokutai</i>). Pan-Asianists said Japan had a mission to free Asia from Western rule. Slogans such as <i>hakkō ichiu</i> (“the eight corners of the world under one roof”) and the “Greater East Asia Co-Prosperity Sphere” (1940) presented conquest as liberation.</p>
+        <p class="but"><b>But:</b> Japanese rule in Korea, China and later Southeast Asia was often brutal and exploitative. Ideology justified expansion, but did it cause it?</p>
+      </article>
+      <article class="card driver">
+        <div class="k">International</div>
+        <h3>A hypocritical and weak world order</h3>
+        <p>Japan copied Western imperialism, then was told the age of empire was over. The Triple Intervention (1895), the rejected racial equality clause at Paris (1919), the 5:5:3 naval ratio (1922) and the US ban on Japanese immigration (1924) all looked like discrimination. When Japan took Manchuria, the League of Nations protested but did nothing.</p>
+        <p class="but"><b>But:</b> grievance explains anger, not policy. Many Japanese diplomats, like Foreign Minister Shidehara Kijūrō in the 1920s, chose cooperation with the West in the same conditions.</p>
+      </article>
+      <article class="card driver">
+        <div class="k">Contingency</div>
+        <h3>Momentum and opportunism</h3>
+        <p>Many key steps were not planned in Tokyo: a bomb on a railway in 1931, a shooting at the Marco Polo Bridge in 1937. Each success made retreat harder, because withdrawing would mean admitting that soldiers had died for nothing. Germany’s victories in Europe in 1940 left French, Dutch and British colonies almost undefended.</p>
+        <p class="but"><b>But:</b> opportunities only matter if someone wants to take them. Momentum needs a direction.</p>
+      </article>
+    </div>
+
+    <div class="grid2" style="margin-top:24px">
+      <div class="card stack">
+        <h3>Strike North or Strike South?</h3>
+        <p>Japanese strategy split two ways. The army favoured <b>Hokushin-ron</b> (“northern advance”): fight the Soviet Union in Siberia and Mongolia. The navy favoured <b>Nanshin-ron</b> (“southern advance”): take the oil, rubber and tin of Southeast Asia.</p>
+        <p>The north lost the argument at <b>Nomonhan</b> (Khalkhin Gol, May–September 1939), where Soviet forces under Georgy Zhukov defeated the Japanese army. In April 1941 Japan signed a neutrality pact with the USSR. The road south lay open, and the US Navy stood on that road.</p>
+      </div>
+      <div class="card stack">
+        <h3>Army against army: 1936</h3>
+        <p>The army itself was divided. The <b>Kōdōha</b> (Imperial Way faction) were young radicals who wanted a “Shōwa Restoration” through direct action. The <b>Tōseiha</b> (Control faction) wanted to prepare the whole economy for total war through the state bureaucracy.</p>
+        <p>On <b>26 February 1936</b> about 1,400 Kōdōha-led troops occupied central Tokyo and murdered senior ministers. The Emperor ordered the revolt crushed. The winners were the Tōseiha, who now dominated a frightened civilian government.</p>
+      </div>
+    </div>
+
+    <div class="fin" style="margin-top:24px">
+      <div class="eyebrow">Suomi-yhteys · The Finland connection</div>
+      <h3>A Japanese colonel and Finnish activists, 1904–1905</h3>
+      <p style="margin-top:8px" class="col">During the Russo-Japanese War, Colonel <b>Akashi Motojirō</b>, Japan’s military attaché in Europe, secretly funded revolutionaries inside the Russian Empire to weaken the Tsar from within. His main partner was the Finnish activist <b>Konni Zilliacus</b>. Japanese money helped buy the rifles shipped on the steamer <b>John Grafton</b> in 1905, which ran aground in the Gulf of Bothnia. For many Finns, Japan’s victory over Russia was a sign of hope; the Great Strike in Finland followed in the autumn of 1905.</p>
+      <p style="margin-top:10px" class="muted col"><b>Discuss with a partner:</b> does it change how we judge Japanese imperialism if the same state was seen as a liberator by some peoples ruled by Russia, while it was colonising Korea?</p>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="eyebrow" style="margin-bottom:6px">Then and now</div>
+      <h3>Three questions that are still alive</h3>
+      <div class="grid3" style="margin-top:12px">
+        <div class="stack"><h4>Do sanctions deter or provoke?</h4><p style="font-size:15px">The 1941 oil embargo was meant to stop Japan. It pushed Japan’s leaders towards war instead. Since 2022 the EU, including Finland, has used large-scale sanctions against Russia. What conditions make sanctions work?</p></div>
+        <div class="stack"><h4>Energy dependence</h4><p style="font-size:15px">Japan’s weakness was that it bought most of its oil from a possible enemy. In 2022 Finland stopped importing Russian gas and electricity. Why do states treat energy as a security question?</p></div>
+        <div class="stack"><h4>History in today’s politics</h4><p style="font-size:15px">School textbooks, the Yasukuni Shrine and the “comfort women” issue still strain Japan’s relations with China and South Korea. Why is this history harder to “close” than, for example, the Russo-Japanese War?</p></div>
+      </div>
+    </div>
+    <div class="readbtn" data-read="explain"></div>
+  </div>
+</section>
+
+<!-- PEARL HARBOR -->
+<section id="pearl">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">04 · 1940–1941 · <span class="objref">G2</span> <span class="objref">G3</span></div>
+      <h2>The road to Pearl Harbor: the oil trap</h2>
+      <p class="keyidea"><b>Key idea:</b> every Japanese move south brought new US sanctions, and every sanction made the move south look more necessary.</p>
+      <p class="col muted">In 1940 Japan bought most of its oil from the United States; the figure usually given is about 80 percent. Its stockpile would last about two years at most.</p>
+    </div>
+    <div class="feature">
+      <div class="eyebrow">Action and reaction</div>
+      <h3>Eighteen months from pressure to war</h3>
+      <ol class="steps">
+        <li><span class="mono">Jan 1940</span><span>The 1911 US–Japan commercial treaty expires; the US is free to restrict trade.</span></li>
+        <li><span class="mono">Sep 1940</span><span>Japan occupies northern French Indochina to cut supplies to China. The US bans exports of scrap iron and steel. Japan signs the <b>Tripartite Pact</b> with Germany and Italy (27 Sept).</span></li>
+        <li><span class="mono">Apr 1941</span><span>Soviet–Japanese Neutrality Pact. The northern option is closed; talks between Hull and Ambassador Nomura begin in Washington.</span></li>
+        <li><span class="mono">Jul 1941</span><span>An Imperial Conference (2 July) decides to advance south even at the risk of war. Japan occupies southern Indochina. The US freezes Japanese assets (26 July); Britain and the Netherlands follow.</span></li>
+        <li><span class="mono">Aug 1941</span><span>The United States stops all oil exports to Japan. In Tokyo this is called “ABCD encirclement” (America, Britain, China, Dutch).</span></li>
+        <li><span class="mono">Sep–Oct 1941</span><span>The Imperial Conference of 6 September sets a deadline for diplomacy. Prime Minister Konoe cannot get the army to accept withdrawal from China and resigns; General <b>Tōjō Hideki</b> becomes prime minister (18 Oct).</span></li>
+        <li><span class="mono">26 Nov 1941</span><span>US Secretary of State Cordell Hull’s note demands withdrawal from China and Indochina. The same day the carrier strike force leaves the Kuril Islands.</span></li>
+        <li><span class="mono">7/8 Dec 1941</span><span>Attacks on Pearl Harbor, Malaya, the Philippines, Hong Kong, Guam and Wake. At Pearl Harbor 2,403 Americans die; the US carriers are at sea and survive.</span></li>
+      </ol>
+    </div>
+    <div class="grid2" style="margin-top:24px">
+      <div class="card stack">
+        <h3>Why attack the US at all?</h3>
+        <p>Japan’s target was the oil of the Dutch East Indies. Planners believed the US would not stand aside, and the US Pacific Fleet at Pearl Harbor and the American bases in the Philippines lay on the flank of any move south. Admiral <b>Yamamoto Isoroku</b> argued for a surprise blow that would win six months to a year of freedom of action. He also warned that Japan could not win a long war against American industry.</p>
+      </div>
+      <div class="card stack">
+        <h3>Was war “forced” on Japan?</h3>
+        <p>The Japanese government said so in December 1941. But the US demand was clear: leave China. Tokyo could have accepted a costly retreat. The leaders chose war because withdrawing from China, after four years and huge losses, seemed politically impossible. You will test this claim yourself in the simulation (Task 5).</p>
+      </div>
+    </div>
+    <p style="margin-top:16px;font-size:15px" class="muted">Listen: President Roosevelt’s “date which will live in infamy” speech of 8 December 1941. A recording and transcript are linked from the <a href="https://en.wikipedia.org/wiki/Day_of_Infamy_speech">Wikipedia article on the speech</a> (opens outside this page).</p>
+    <div class="readbtn" data-read="pearl"></div>
+  </div>
+</section>
+
+<!-- HISTORIANS -->
+<section id="historians">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">05 · Perspectives · <span class="objref">G4</span></div>
+      <h2>What historians argue</h2>
+      <p class="keyidea"><b>Key idea:</b> historians disagree mainly about two things: was there a plan, and who was responsible?</p>
+      <p class="col muted">Use named historians to support an argument, not as decoration. The summaries give each historian’s main line of argument in our own words. Full titles are in the <a href="#reading">reading list</a>.</p>
+    </div>
+    <div class="spectrum" aria-hidden="true"><span>← Japan planned and chose aggression</span><span>Japan reacted to circumstances →</span></div>
+    <div class="hist">
+      <div class="card"><h4>The Tokyo Trial view</h4><div class="who">International Military Tribunal for the Far East, 1946–1948</div><p>Japan’s leaders conspired from 1928 onward to wage aggressive war and dominate Asia. Expansion was a plan, and its authors were criminals. Critics call the trial “victors’ justice” and point out that it shielded the Emperor for political reasons.</p></div>
+      <div class="card"><h4>Herbert Bix</h4><div class="who"><i>Hirohito and the Making of Modern Japan</i> (2000)</div><p>The Emperor was not a powerless figurehead. Hirohito was informed, took part in strategic decisions and approved the move to war. Responsibility goes to the top of the system.</p></div>
+      <div class="card"><h4>Louise Young</h4><div class="who"><i>Japan’s Total Empire</i> (1998)</div><p>Manchukuo was a popular project. Newspapers, radio, songs, business and settlers all invested in it. Expansion was driven from below as well as by the army; Japanese society was complicit.</p></div>
+      <div class="card"><h4>James Crowley and Michael Barnhart</h4><div class="who"><i>Japan’s Quest for Autonomy</i> (1966) · <i>Japan Prepares for Total War</i> (1987)</div><p>Policy came from a search for security and economic self-sufficiency. The lesson of the First World War was that modern wars need resources. The quest for autarky led Japan into the very dependence it feared.</p></div>
+      <div class="card"><h4>Akira Iriye</h4><div class="who"><i>The Origins of the Second World War in Asia and the Pacific</i> (1987)</div><p>Japan’s choices must be seen in an international system that broke down after 1929. Japan left the cooperative “Washington system” and tried to build a regional order of its own, which clashed with American ideas of the open door.</p></div>
+      <div class="card"><h4>Eri Hotta</h4><div class="who"><i>Japan 1941: Countdown to Infamy</i> (2013)</div><p>Many of Japan’s leaders doubted they could win, yet none was willing to take responsibility for stopping the drift to war. The decision of 1941 came from weak, divided leadership as much as from outside pressure.</p></div>
+      <div class="card"><h4>Japanese nationalist view</h4><div class="who">Postwar right-wing writers and some politicians</div><p>Japan fought a war of self-defence against Western encirclement and helped liberate Asia from colonial rule. Most historians, in Japan and abroad, reject this as an apology that ignores Japanese atrocities and colonial rule.</p></div>
+      <div class="card stack"><h4><span class="lvl cha">Challenge</span> Make two historians argue</h4><p style="font-size:15px">Write a short paragraph in which Bix and Young disagree about who was responsible for Japanese expansion. Then add a third sentence: which of them does the Mukden Incident support better?</p><label for="histChallenge" class="sr-only">Your paragraph</label><textarea id="histChallenge" rows="4" placeholder="Bix would argue… Young, however…"></textarea></div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h4>Theory of Knowledge link</h4>
+      <p style="margin-top:6px">Estimates of the number of victims of the Nanjing Massacre (December 1937 to early 1938) range from tens of thousands to more than 300,000. Why might the same evidence produce such different figures? What does it mean for a historian to be “objective” about an event that is still part of national politics in China and Japan today?</p>
+    </div>
+    <div class="readbtn" data-read="historians"></div>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section id="sources">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">06 · Paper 1 practice · <span class="objref">G4</span></div>
+      <h2>Source analysis</h2>
+      <p class="col muted">Four sources, four question types, following the classic Paper 1 structure. Write your answer first. Then open the help or the model answer and use the checklist to judge your own work.</p>
+    </div>
+    <div class="stack">
+      <div class="src">
+        <div class="lab">Source A</div>
+        <div class="prov">Yamagata Aritomo, Prime Minister of Japan, speech to the first session of the Imperial Diet, December 1890 (adapted translation).</div>
+        <blockquote>The independence and security of the nation depend first upon the protection of the line of sovereignty, and then upon the protection of the line of advantage. The line of sovereignty is the nation’s border; the line of advantage is the area closely related to the safety of that border. If we wish to maintain the nation’s independence, it is not enough to guard the line of sovereignty alone; we must also protect the line of advantage.</blockquote>
+      </div>
+      <div class="src">
+        <div class="lab">Source B</div>
+        <div class="prov">Report of the Commission of Enquiry of the League of Nations (the Lytton Report), published October 1932 (extracts).</div>
+        <blockquote>The military operations of the Japanese troops during this night [18 September 1931] cannot be regarded as measures of legitimate self-defence… The present régime [Manchukuo] cannot be considered to have been called into existence by a genuine and spontaneous independence movement.</blockquote>
+      </div>
+      <div class="src">
+        <div class="lab">Source C</div>
+        <div class="prov">Prince Konoe Fumimaro, Prime Minister of Japan, government statement on a “New Order in East Asia”, 3 November 1938 (adapted translation).</div>
+        <blockquote>What Japan seeks is the establishment of a new order which will ensure the permanent stability of East Asia. This new order has for its foundation a relationship of mutual aid between Japan, Manchukuo and China in political, economic and cultural fields. Japan does not reject the participation of the present Nationalist Government if it abandons its former policy and changes its personnel.</blockquote>
+      </div>
+      <div class="src">
+        <div class="lab">Source D</div>
+        <div class="prov">Imperial Rescript declaring war on the United States and the British Empire, issued in Tokyo on 8 December 1941 (adapted from the official English translation).</div>
+        <blockquote>It has been truly unavoidable and far from Our wishes that Our Empire has now been brought to cross swords with America and Britain… They have obstructed by every means Our peaceful commerce, and finally resorted to a direct severance of economic relations, menacing gravely the existence of Our Empire… Our Empire, for its existence and self-defence, has no other recourse but to appeal to arms.</blockquote>
+      </div>
+    </div>
+
+    <div class="qs" id="paper1"></div>
+  </div>
+</section>
+
+<!-- TASKS -->
+<section id="tasks">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">07 · Do it yourself</div>
+      <h2>Tasks</h2>
+      <p class="col muted">Your work is saved in this browser. Use the Copy buttons to paste your answers into your class workspace (for example Teams or OneNote).</p>
+    </div>
+
+    <div class="stack" style="gap:20px">
+      <article class="task" id="task1">
+        <div class="task-head"><span class="tn">1</span><h3>Put the empire in order</h3><span class="meta">individual · 5 min</span><span class="objref">G1</span></div>
+        <p>Select the events in chronological order, earliest first. Select a placed event to send it back.</p>
+        <div class="order-pool" id="orderPool" role="group" aria-label="Events not yet placed"></div>
+        <div class="order-done" id="orderDone" role="group" aria-label="Your timeline"></div>
+        <div class="row"><button class="btn" type="button" id="orderCheck">Check order</button><button class="btn ghost" type="button" id="orderReset">Shuffle again</button></div>
+        <div class="status" id="orderStatus" aria-live="polite"></div>
+        <div id="orderFeedback"></div>
+      </article>
+
+      <article class="task" id="task2">
+        <div class="task-head"><span class="tn">2</span><h3>Causation gauge: 1931 vs 1941</h3><span class="meta">pairs · 10 min</span><span class="objref">G2</span></div>
+        <p>How important was each factor for the invasion of Manchuria (1931) and for the decision to attack the US (1941)? Rate 0 (irrelevant) to 5 (decisive). Then compare your ratings with one historian’s weighting, and explain the factor that changed most.</p>
+        <div class="gauge" id="gauge">
+          <div class="gh f0">Factor</div><div class="gh">1931 · Manchuria</div><div class="gh">1941 · Pearl Harbor</div>
+        </div>
+        <svg id="gaugeChart" viewBox="0 0 700 250" role="img" aria-labelledby="gaugeSummary"></svg>
+        <p class="sr-only" id="gaugeSummary" aria-live="polite"></p>
+        <div class="legend"><span><i style="background:var(--s1)"></i>1931, your rating</span><span><i style="background:var(--s2)"></i>1941, your rating</span><span id="refLegend" hidden><i style="background:transparent;border:2px solid var(--ink)"></i>Historian’s weighting</span></div>
+        <div class="row"><button class="btn ghost" type="button" id="refBtn" aria-expanded="false" aria-controls="refBox">Compare with a historian’s weighting</button></div>
+        <div id="refBox" hidden class="ms open"></div>
+        <label for="gaugeWhy">The factor that changed most, and why:</label>
+        <details class="scaf"><summary>Need help? Sentence starters</summary><ul><li>Between 1931 and 1941, the importance of … rose/fell because …</li><li>In 1931 the key actor was …, but by 1941 …</li><li>This shows that the causes of Japanese expansion …</li></ul></details>
+        <textarea id="gaugeWhy" rows="3" placeholder="e.g. Western economic pressure rose from 1 to 5 because…"></textarea>
+        <div class="row"><button class="btn ghost" type="button" data-copy="gauge">Copy my ratings and answer</button><span class="status" id="copy-gauge" aria-live="polite"></span></div>
+      </article>
+
+      <article class="task" id="task3">
+        <div class="task-head"><span class="tn">3</span><h3>Source work</h3><span class="meta">individual · 20 min</span><span class="objref">G4</span></div>
+        <p>Answer the Paper 1 questions in <a href="#sources">section 06</a>. Do questions 1–3 in class; finish question 4 as homework if needed. <span class="lvl sup">Support</span> Start with 1(a), 1(b) and 2. <span class="lvl cha">Challenge</span> Also answer question 5.</p>
+      </article>
+
+      <article class="task" id="task4">
+        <div class="task-head"><span class="tn">4</span><h3>The point of no return</h3><span class="meta">whole class · 10 min</span><span class="objref">G2</span><span class="objref">G3</span></div>
+        <p>When did war with the United States become unavoidable? Read the four cases, choose one, and be ready to defend it in the class debate. Your teacher counts the votes.</p>
+        <div class="vote" id="vote"></div>
+        <label for="voteWhy">My strongest argument:</label>
+        <textarea id="voteWhy" rows="2"></textarea>
+      </article>
+
+      <article class="task" id="task5">
+        <div class="task-head"><span class="tn">5</span><h3>Simulation: Tokyo, 1941. You decide.</h3><span class="meta">pairs · 15 min</span><span class="objref">G2</span><span class="objref">G3</span></div>
+        <p>You advise Japan’s leaders at four real decision points in 1941. Choose with your partner, then see what might have followed and what actually happened. At the end, compare your path with history.</p>
+        <div class="sim" id="sim" aria-live="polite"></div>
+      </article>
+
+      <article class="task" id="task6">
+        <div class="task-head"><span class="tn">6</span><h3>Paper 2 essay plan and peer feedback</h3><span class="meta">homework · 30 min + 10 min in pairs</span><span class="objref">G2</span><span class="objref">G4</span></div>
+        <p class="src" style="border-left-color:var(--shu)"><b>“Economic factors were the main reason for Japanese expansion between 1931 and 1941.” To what extent do you agree with this statement?</b></p>
+        <details class="scaf"><summary>Need help? How to plan a “to what extent” essay</summary><ul>
+          <li>Your thesis must answer the question: “to a large extent”, “only partly”, “not at all”, and say <i>why</i>.</li>
+          <li>Each argument needs specific evidence (dates, names, numbers) and, if you can, a historian.</li>
+          <li>Show change over time: the answer for 1931 may differ from the answer for 1941.</li>
+          <li>The conclusion makes a judgement. It does not repeat your arguments.</li>
+          <li>Thesis starter: “Economic factors were important, especially in 1941, but …”</li>
+        </ul></details>
+        <div class="plan">
+          <div class="full"><label for="p-thesis">Thesis (your answer in 1–2 sentences)</label><textarea id="p-thesis" rows="2"></textarea></div>
+          <div><label for="p-for">Argument 1: economic factors (evidence + historian)</label><textarea id="p-for" rows="4"></textarea></div>
+          <div><label for="p-against1">Argument 2: political and military factors</label><textarea id="p-against1" rows="4"></textarea></div>
+          <div><label for="p-against2">Argument 3: ideology or international context</label><textarea id="p-against2" rows="4"></textarea></div>
+          <div><label for="p-change">Change over time: 1931 vs 1937 vs 1941</label><textarea id="p-change" rows="4"></textarea></div>
+          <div class="full"><label for="p-concl">Conclusion (judgement, not summary)</label><textarea id="p-concl" rows="2"></textarea></div>
+          <div class="full"><label for="p-hl"><span class="lvl cha">Challenge</span> Comparison: how does Japan’s path compare with Italy’s invasion of Abyssinia (1935–36), the other Paper 1 case study?</label><textarea id="p-hl" rows="3"></textarea></div>
+        </div>
+        <div class="row"><button class="btn" type="button" data-copy="plan">Copy my essay plan</button><span class="status" id="copy-plan" aria-live="polite"></span></div>
+
+        <div class="card" style="background:var(--paper)">
+          <h4>Peer feedback: two stars and a wish</h4>
+          <p style="font-size:15px;margin:6px 0 10px">Swap plans with a partner (paste them into the class chat, or show your screen). Use these questions on your partner’s plan:</p>
+          <ul class="tight" style="font-size:15px">
+            <li>Does the thesis say <i>to what extent</i>, and why?</li>
+            <li>Does every argument have specific evidence?</li>
+            <li>Is there a historian, used to support a point?</li>
+            <li>Does the plan show change between 1931 and 1941?</li>
+          </ul>
+          <div class="plan" style="margin-top:12px">
+            <div><label for="pf-got">Feedback I received (two stars and a wish)</label><textarea id="pf-got" rows="3"></textarea></div>
+            <div><label for="pf-do">What I will change in my plan</label><textarea id="pf-do" rows="3"></textarea></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="task" id="task7">
+        <div class="task-head"><span class="tn">7</span><h3>Exit ticket and self-assessment</h3><span class="meta">individual · 5 min</span><span class="objref">G1–G4</span></div>
+        <fieldset class="sa" id="selfAssess"><legend><b>How well can you do each goal now?</b></legend></fieldset>
+        <div class="plan">
+          <div><label for="x3">3 events I can now explain</label><textarea id="x3" rows="3"></textarea></div>
+          <div><label for="x2">2 causes I would rank highest, and why</label><textarea id="x2" rows="3"></textarea></div>
+          <div class="full"><label for="x1">1 question I still have</label><input type="text" id="x1"></div>
+        </div>
+        <div id="nextSteps" class="card" style="background:var(--paper)" aria-live="polite"></div>
+        <div class="row"><button class="btn" type="button" data-copy="report">Copy my progress report for the teacher</button><span class="status" id="copy-report" aria-live="polite"></span></div>
+        <p class="muted" style="font-size:14px">The report contains your route progress, quiz score, self-assessment and exit ticket. It has no name in it: paste it into your Teams assignment or class notebook, where your teacher sees who sent it.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">08 · Check yourself · <span class="objref">G1</span> <span class="objref">G2</span> <span class="objref">G3</span></div>
+      <h2>Quiz: twelve questions</h2>
+      <p class="col muted">Choose an answer to see whether it is right and why. Wrong answers point you to the section to reread.</p>
+    </div>
+    <div class="quiz" id="quizBox"></div>
+    <div class="row" style="margin-top:14px"><button class="btn ghost" type="button" id="quizReset">Start the quiz again</button></div>
+    <div class="score" id="score" aria-live="polite">Score 0 / 12</div>
+  </div>
+</section>
+
+<!-- GLOSSARY -->
+<section id="glossary">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">09 · Vocabulary</div>
+      <h2>Key terms</h2>
+      <p class="col muted">English term, Japanese original where there is one, a short explanation and the Finnish equivalent (FI).</p>
+    </div>
+    <dl class="gloss" id="glossList"></dl>
+  </div>
+</section>
+
+<!-- READING -->
+<section id="reading">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">10 · Where this comes from</div>
+      <h2>Sources and further reading</h2>
+      <p class="col muted">The content of this page is based on the works below. Use them for your Internal Assessment or Extended Essay, and always check facts against at least two of them.</p>
+    </div>
+    <div class="grid2">
+      <div class="card"><h4>Historians</h4>
+        <ol class="refs" style="margin-top:8px">
+          <li>Barnhart, Michael A. <i>Japan Prepares for Total War: The Search for Economic Security, 1919–1941.</i> Cornell University Press, 1987.</li>
+          <li>Bix, Herbert P. <i>Hirohito and the Making of Modern Japan.</i> HarperCollins, 2000.</li>
+          <li>Crowley, James B. <i>Japan’s Quest for Autonomy: National Security and Foreign Policy, 1930–1938.</i> Princeton University Press, 1966.</li>
+          <li>Hotta, Eri. <i>Japan 1941: Countdown to Infamy.</i> Knopf, 2013.</li>
+          <li>Iriye, Akira. <i>The Origins of the Second World War in Asia and the Pacific.</i> Longman, 1987.</li>
+          <li>Paine, S. C. M. <i>The Wars for Asia, 1911–1949.</i> Cambridge University Press, 2012.</li>
+          <li>Young, Louise. <i>Japan’s Total Empire: Manchuria and the Culture of Wartime Imperialism.</i> University of California Press, 1998.</li>
+        </ol>
+      </div>
+      <div class="card"><h4>Primary sources and online collections</h4>
+        <ol class="refs" style="margin-top:8px">
+          <li>League of Nations. <i>Appeal by the Chinese Government: Report of the Commission of Enquiry</i> (the Lytton Report). Geneva, 1932.</li>
+          <li>The Avalon Project, Yale Law School: diplomatic documents, including the treaties named on this page. <a href="https://avalon.law.yale.edu/">avalon.law.yale.edu</a></li>
+          <li>Maps and overview: <a href="https://en.wikipedia.org/wiki/Empire_of_Japan">Wikipedia, “Empire of Japan”</a>. A starting point only; follow its references.</li>
+          <li>Sources A, C and D on this page are shortened and adapted from standard English translations. Check them against a full text before quoting them in your own work.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHER -->
+<section id="teacher">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">11 · For the teacher</div>
+      <h2>Lesson plan and notes</h2>
+      <p class="col muted">Students may read this too. Nothing here spoils the tasks except the order key, which is behind a button.</p>
+    </div>
+    <div class="card" style="overflow-x:auto">
+      <table class="plan-table">
+        <caption class="sr-only">75-minute lesson plan</caption>
+        <thead><tr><th scope="col">Min</th><th scope="col">Phase</th><th scope="col">What happens</th></tr></thead>
+        <tbody>
+          <tr><td>0–5</td><td>Hook + paths</td><td>Show the big question. Think–pair–share: “1853 American warships open Japan; 1941 Japan attacks the American fleet. What happened in between?” Students choose a path in section 00.</td></tr>
+          <tr><td>5–10</td><td>Task 1</td><td>Students order the events on their own device. Check the hardest pairs together (1902/1905, 1931/1933).</td></tr>
+          <tr><td>10–22</td><td>Input</td><td>Walk through the expansion chart and the four timeline phases. Use the “Stop and think” question after each phase as a quick pair discussion.</td></tr>
+          <tr><td>22–30</td><td>Task 2</td><td>Pairs complete the causation gauge, then compare with the historian’s weighting. Two pairs share where they disagreed with it.</td></tr>
+          <tr><td>30–45</td><td>Task 5</td><td>Simulation in pairs. Debrief by show of hands at each decision point: “Who followed history? Who did not, and why?”</td></tr>
+          <tr><td>45–55</td><td>Task 4</td><td>Point-of-no-return vote, then a structured debate: one minute per side, then rebuttals. Link to the historians section.</td></tr>
+          <tr><td>55–70</td><td>Task 3</td><td>Paper 1 questions 1(a), 1(b) and 2, timed (5 + 8 min). Questions 3–4 for homework.</td></tr>
+          <tr><td>70–75</td><td>Task 7</td><td>Exit ticket and self-assessment; students paste their progress report into the Teams assignment. Set Task 6 (essay plan) as homework, peer feedback at the start of next lesson.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid3" style="margin-top:16px">
+      <div class="card stack"><h4>Seeing student progress</h4><p style="font-size:15px">The page stores nothing centrally. Create a Teams (or Moodle/Classroom) assignment called “Japan 1894–1941”. Students paste their <b>progress report</b> (Task 7), source answers and essay plan there. You see route progress, quiz score, self-assessment per goal and the exit ticket in one block per student.</p></div>
+      <div class="card stack"><h4>Differentiation</h4><p style="font-size:15px"><b>Support</b> opens sentence starters and reorders the route to start with key terms and the big picture. <b>Challenge</b> adds Paper 1 Q5, the historians paragraph and the Abyssinia comparison. Students can switch paths at any time; nothing is locked.</p></div>
+      <div class="card stack"><h4>Common misconceptions</h4><p style="font-size:15px">“The Emperor was a dictator like Hitler.” “Pearl Harbor came out of nowhere.” “Japan wanted to conquer the USA.” “Manchuria was taken on orders from Tokyo.” Each is addressed on this page; quiz questions 5, 9 and 11 test them.</p></div>
+      <div class="card stack"><h4>Assessment</h4><p style="font-size:15px">Paper 1 Q4 rewards using sources <i>and</i> own knowledge in an argument. The IB History guide has been revised: check the question format against the guide your cohort is assessed on. The 3/2/4/6/9 pattern used here is the classic one.</p></div>
+      <div class="card stack"><h4>Using it in your LMS</h4><p style="font-size:15px">Post the page link in Teams, Moodle or Classroom. The page is also a single self-contained HTML file, which can be uploaded to an LMS as a file resource. It has no SCORM or LTI package, so grades do not flow back automatically; use the copied reports instead.</p></div>
+      <div class="card stack"><h4>Adapting the material</h4><p style="font-size:15px">All events, quiz questions, sources, simulation steps and glossary terms are plain lists at the bottom of the HTML file and easy to edit. You can also ask Claude to change, translate or shorten any part and republish it to the same link.</p></div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <details><summary>Task 1 answer key</summary><ol id="orderKey" style="margin:8px 0 0"></ol></details>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">12 · About this material</div>
+      <h2>Privacy, licence and feedback</h2>
+    </div>
+    <div class="grid3">
+      <div class="card stack"><h4>Your data</h4><p style="font-size:15px">This page asks for no name, email or login and sends nothing anywhere. Your answers are saved only in this browser on this device (local storage), so you can come back later. On a shared computer, delete them when you finish.</p><div class="row"><button class="btn ghost small" type="button" id="clearData">Delete my saved answers</button></div><p class="status" id="clearStatus" aria-live="polite"></p></div>
+      <div class="card stack"><h4>Licence</h4><p style="font-size:15px">Text and tasks are licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 (CC BY 4.0)</a>. You may share and adapt them if you credit the source. Quoted historical sources keep their own status.</p></div>
+      <div class="card stack"><h4>Version</h4><p style="font-size:15px"><b>1.1</b>, updated 11 November 2026. Added learning paths, route and progress, simulation, scaffolds and self-checks, peer feedback, Finnish terms, reading list, keyboard and screen-reader improvements.</p></div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h3>Help improve this material</h3>
+      <p class="muted" style="font-size:15px;margin:4px 0 12px">Answer three questions and paste them to your teacher. Your feedback is used to update the page.</p>
+      <fieldset class="row" id="fbRate"><legend style="width:100%;font-weight:500;font-size:15px;margin-bottom:6px">How useful was this lesson for you?</legend></fieldset>
+      <div class="plan" style="margin-top:12px">
+        <div><label for="fb-hard">What was hardest or unclear?</label><textarea id="fb-hard" rows="2"></textarea></div>
+        <div><label for="fb-idea">What would make it better?</label><textarea id="fb-idea" rows="2"></textarea></div>
+      </div>
+      <div class="row" style="margin-top:12px"><button class="btn ghost" type="button" data-copy="feedback">Copy my feedback</button><span class="status" id="copy-feedback" aria-live="polite"></span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">IB History · The Japanese Empire, 1894–1941 · Version 1.1 · CC BY 4.0 · Answers you type stay in your own browser.</div>
+</footer>
+
+<div class="tip" id="tip" aria-hidden="true"></div>
+
+<script>
+(function(){
+"use strict";
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+const el = (tag, attrs={}, html) => { const e=document.createElement(tag); for(const k in attrs){ if(k==="class") e.className=attrs[k]; else e.setAttribute(k,attrs[k]); } if(html!==undefined) e.innerHTML=html; return e; };
+const PREFIX="jp-emp:";
+const store = {
+  get(k,d){ try{ const v=localStorage.getItem(PREFIX+k); return v===null?d:JSON.parse(v);}catch(e){return d;} },
+  set(k,v){ try{ localStorage.setItem(PREFIX+k, JSON.stringify(v)); }catch(e){} refreshProgress(); }
+};
+
+/* =================== CONTENT (edit these lists to adapt the lesson) =================== */
+const PHASES = [
+  {id:"p1", n:"I",  name:"The Meiji empire is built", yrs:"1894–1912", c:"var(--s1)",
+   think:"Japan won two wars in ten years, but lost part of its gains to Western pressure in 1895. What lessons might its leaders have drawn about how to be treated as an equal by the West?",
+   ans:"Many concluded that military power and colonies earned respect, while diplomacy alone did not: the Triple Intervention took Liaodong away, but victory over Russia in 1905 brought recognition, Korea and Manchurian rights."},
+  {id:"p2", n:"II", name:"Inside the Western order", yrs:"1912–1930", c:"var(--s2)",
+   think:"Japan cooperated with the West in the 1920s. Which events made that cooperation look like a bad deal to Japanese nationalists?",
+   ans:"The rejected racial equality clause (1919), the 5:5:3 naval ratio (1922), the return of Shandong (1922), the US Immigration Act (1924) and the London Naval Treaty (1930). Then the Depression made the whole liberal, trading model look like a failure."},
+  {id:"p3", n:"III",name:"Manchuria and the crisis of politics", yrs:"1931–1936", c:"var(--s3)",
+   think:"Who was really making Japanese foreign policy in 1931–1936?",
+   ans:"Increasingly the army, and often its junior officers (gekokujō). The Kwantung Army acted first and Tokyo accepted the result; assassinations in 1932 and 1936 frightened civilians into going along. But public opinion and the press also supported expansion."},
+  {id:"p4", n:"IV", name:"War in China, then the Pacific", yrs:"1937–1941", c:"var(--s4)",
+   think:"Why could Japan neither win nor leave the war in China?",
+   ans:"China was too large to occupy, Jiang’s government retreated inland to Chongqing and received foreign supplies, and Konoe had refused to negotiate. Leaving would mean admitting that huge sacrifices had been for nothing, which the army would not accept."}
+];
+const TERR = [
+  {t:"Taiwan and Pescadores", a:1895, b:1941, p:"p1", how:"Ceded by China, Treaty of Shimonoseki"},
+  {t:"Korea (protectorate, then colony)", a:1905, b:1941, p:"p1", how:"Protectorate 1905, annexed 1910"},
+  {t:"Kwantung Leased Territory", a:1905, b:1941, p:"p1", how:"Russian lease transferred, Treaty of Portsmouth"},
+  {t:"South Sakhalin (Karafuto)", a:1905, b:1941, p:"p1", how:"Ceded by Russia, Treaty of Portsmouth"},
+  {t:"Shandong (Qingdao)", a:1914, b:1922, p:"p2", how:"Taken from Germany 1914; returned to China 1922"},
+  {t:"South Seas Mandate", a:1914, b:1941, p:"p2", how:"German islands occupied 1914; League mandate 1919"},
+  {t:"Manchuria (Manchukuo)", a:1931, b:1941, p:"p3", how:"Mukden Incident 1931; puppet state 1932"},
+  {t:"Jehol and North China buffer", a:1933, b:1941, p:"p3", how:"Jehol 1933; Tanggu Truce demilitarised zone"},
+  {t:"Eastern China (occupied zone)", a:1937, b:1941, p:"p4", how:"Full-scale war from July 1937"},
+  {t:"Northern French Indochina", a:1940, b:1941, p:"p4", how:"Occupied September 1940"},
+  {t:"Southern French Indochina", a:1941, b:1941.95, p:"p4", how:"Occupied July 1941; triggered US oil embargo"}
+];
+const EVENTS = [
+  ["p1","Aug 1894 – Apr 1895","First Sino-Japanese War","Japan and Qing China fight over influence in Korea. Japan’s modernised army and navy win quickly, a shock to China and to the West.",0],
+  ["p1","17 Apr 1895","Treaty of Shimonoseki","China recognises Korean independence, cedes Taiwan, the Pescadores and the Liaodong Peninsula, and pays a large indemnity.",0],
+  ["p1","Apr 1895","Triple Intervention","Russia, Germany and France force Japan to return Liaodong. Three years later Russia leases Port Arthur there itself. Japanese anger is lasting: the lesson is that only power counts.",1],
+  ["p1","30 Jan 1902","Anglo-Japanese Alliance","Britain, the world’s leading naval power, makes Japan an ally. Japan is accepted as a great power.",0],
+  ["p1","Feb 1904 – Sep 1905","Russo-Japanese War","Japan attacks the Russian fleet at Port Arthur before declaring war, and destroys the Baltic Fleet at Tsushima (May 1905). An Asian power defeats a European empire.",1],
+  ["p1","5 Sep 1905","Treaty of Portsmouth","Mediated by US President Theodore Roosevelt. Japan gains the Kwantung lease, the South Manchuria Railway and South Sakhalin, but no indemnity. Riots break out in Tokyo.",0],
+  ["p1","Aug 1910","Annexation of Korea","After five years as a protectorate, Korea becomes a Japanese colony. Colonial rule lasts until 1945.",0],
+  ["p2","Aug–Nov 1914","First World War: Qingdao","Japan joins the Allies and takes Germany’s base in Shandong and its Pacific islands.",0],
+  ["p2","Jan 1915","Twenty-One Demands","Japan presses China for sweeping economic and political rights. The US and Britain object, and Chinese nationalism grows.",0],
+  ["p2","1919","Paris Peace Conference","Japan keeps Shandong (sparking China’s May Fourth Movement) and gets a League mandate over the German Pacific islands. Its racial equality proposal is blocked.",1],
+  ["p2","1921–1922","Washington Conference","A 5:5:3 battleship ratio (US:Britain:Japan), the end of the Anglo-Japanese Alliance, and a Nine-Power Treaty to respect China’s integrity. Japan returns Shandong to China.",0],
+  ["p2","1924–1925","Immigration Act and universal male suffrage","The US bans Japanese immigration, a deep humiliation. At home all adult men get the vote (1925), but the Peace Preservation Law targets the left.",0],
+  ["p2","4 Jun 1928","Murder of Zhang Zuolin","Kwantung Army officers blow up the train of the Manchurian warlord. Tokyo fails to punish them, a warning of what is to come.",0],
+  ["p2","1929–1930","Depression and London Naval Treaty","Silk prices collapse and rural Japan suffers. The government accepts new naval limits; Prime Minister Hamaguchi is shot by a nationalist (Nov 1930) and dies the next year.",0],
+  ["p3","18 Sep 1931","Mukden Incident","Kwantung Army officers explode a bomb on the railway near Mukden, blame Chinese troops, and occupy Manchuria. Tokyo is not consulted.",1],
+  ["p3","1 Mar 1932","Manchukuo proclaimed","A puppet state with the last Qing emperor, Puyi, as head of state (emperor from 1934). Real power lies with the Kwantung Army.",0],
+  ["p3","15 May 1932","Prime Minister Inukai assassinated","Young naval officers kill the prime minister. It is the end of party cabinets; the assassins receive lenient sentences and public sympathy.",1],
+  ["p3","Feb–Mar 1933","Japan leaves the League","The League adopts the Lytton Report (24 Feb). Delegate Matsuoka Yōsuke walks out, and Japan gives notice of withdrawal in March.",1],
+  ["p3","31 May 1933","Tanggu Truce","China accepts a demilitarised zone south of the Great Wall after Japan takes Jehol province.",0],
+  ["p3","Dec 1934","Washington Naval Treaty renounced","Japan announces it will leave the naval limits at the end of 1936. A naval race with the US begins.",0],
+  ["p3","26 Feb 1936","February 26 Incident","A failed coup by radical young officers. The army leadership uses the crisis to strengthen its control over government.",0],
+  ["p3","25 Nov 1936","Anti-Comintern Pact","Japan and Nazi Germany agree to cooperate against international communism.",0],
+  ["p4","7 Jul 1937","Marco Polo Bridge Incident","A clash near Beijing escalates into full-scale war with China. Jiang Jieshi (Chiang Kai-shek) decides to resist.",1],
+  ["p4","Dec 1937","Fall of Nanjing; the Panay","Japanese troops take the Chinese capital and commit mass murder and rape. Japanese aircraft sink the US gunboat Panay; Japan apologises and pays compensation.",0],
+  ["p4","Jan & Nov 1938","Konoe’s statements","Konoe refuses to negotiate with Jiang’s government (Jan), then announces a “New Order in East Asia” (Nov). The war has no clear exit.",0],
+  ["p4","May–Sep 1939","Nomonhan (Khalkhin Gol)","Defeat by Soviet forces on the Mongolian border discredits the “Strike North” strategy.",0],
+  ["p4","Sep 1940","Indochina and the Tripartite Pact","Japan moves into northern Indochina and allies with Germany and Italy. The US restricts scrap iron and steel exports.",1],
+  ["p4","13 Apr 1941","Soviet–Japanese Neutrality Pact","Japan secures its northern flank. Hitler’s invasion of the USSR in June surprises Tokyo.",0],
+  ["p4","Jul–Aug 1941","Southern Indochina and the oil embargo","Japan occupies southern Indochina. The US freezes Japanese assets and stops oil exports.",1],
+  ["p4","18 Oct 1941","Tōjō becomes prime minister","General Tōjō Hideki replaces Konoe. Diplomacy continues, with a deadline.",0],
+  ["p4","26 Nov 1941","The Hull note","The US demands withdrawal from China and Indochina. Tokyo reads it as an ultimatum.",0],
+  ["p4","7/8 Dec 1941","Pearl Harbor","353 Japanese aircraft attack the US Pacific Fleet in Hawaii as other forces strike Malaya, the Philippines and Hong Kong. The US declares war the next day.",1]
+];
+const P1 = [
+  {id:"q1a", m:3, q:"<b>1 (a)</b> According to Source A, why must Japan protect the “line of advantage”?",
+   help:["Find three separate points in the source. One mark each.","Use your own words where you can, and keep it short: no own knowledge is needed."],
+   check:["I made three separate points","Each point comes from Source A"],
+   a:"Award 1 mark per relevant point, up to 3:<ul class='tight'><li>National independence and security depend on it, not only on the border itself.</li><li>The line of advantage is the area closely connected to the safety of the border.</li><li>Guarding the border alone is not enough to keep Japan independent.</li><li>It must be protected <i>after</i> and in addition to the line of sovereignty, so security extends outward.</li></ul>"},
+  {id:"q1b", m:2, q:"<b>1 (b)</b> What is the message of Source B?",
+   help:["Ask: what does the commission want the reader to conclude?","Two points: one about 18 September 1931, one about Manchukuo."],
+   check:["I stated the message, not just described the source","I covered both the attack and Manchukuo"],
+   a:"Up to 2 marks: the League’s commission rejected Japan’s claim that its actions on 18 September 1931 were self-defence (1), and found that Manchukuo was not created by a genuine local independence movement, implying it was a Japanese creation (1)."},
+  {id:"q2", m:4, q:"<b>2</b> With reference to its origin, purpose and content, analyse the value and limitations of Source D for an historian studying the reasons for Japan’s decision to go to war in December 1941.",
+   help:["Origin: who wrote it, when, what kind of document? Purpose: why was it written, and for whom?","Starter: “The origin of Source D, an official imperial rescript issued on the day of the attacks, is valuable because…”","Starter: “However, its purpose was to …, which limits its value because…”"],
+   check:["I referred to origin, purpose and content","I gave at least one value and at least one limitation","I linked value and limitation to the historian’s question (reasons for war)"],
+   a:"<b>Value:</b> an official imperial rescript issued on the day of the attacks, so it shows the government’s public justification at the moment of decision; its purpose, to unite the nation behind war, reveals how leaders wanted the war understood (self-defence, economic strangulation); the content confirms the importance leaders gave to the US–British economic measures of 1941.<br><b>Limitations:</b> it is propaganda aimed at the Japanese public and the world, so it leaves out Japan’s own choices (refusal to leave China, the move into Indochina); it presents war as “unavoidable” when the leadership had debated alternatives; it reveals nothing about divisions between army, navy and civilians.<br><i>Markscheme note:</i> up to 3 marks if only value or only limitations are addressed; 4 for a balanced answer referring to origin, purpose and content."},
+  {id:"q3", m:6, q:"<b>3</b> Compare and contrast what Sources C and D reveal about Japanese justifications for its policies in Asia.",
+   help:["Make a quick two-column list: similarities and differences.","Write point by point, not source by source.","Starter: “Both sources present Japanese policy as… However, while Source C …, Source D …”"],
+   check:["I found at least two similarities and two differences","I wrote point by point, with both sources in each point","I used brief quotations from both sources"],
+   a:"<b>Comparison:</b> both present Japanese policy as defensive and legitimate rather than aggressive; both present Japan as working for stability in East Asia; both blame others (Jiang’s Nationalist government in C, America and Britain in D) for the conflict.<br><b>Contrast:</b> C is optimistic and offers a political project (a ‘new order’ of ‘mutual aid’), while D is defensive and speaks of the ‘existence’ of the empire being at stake; C focuses on China and Manchukuo, D on the Western powers; C leaves room for negotiation with a changed Nationalist government, D announces that only force remains; C stresses political and cultural ties, D stresses trade and economic survival.<br><i>Markscheme note:</i> the best answers run a point-by-point comparison. 6 marks for at least three well-supported links, with both comparison and contrast."},
+  {id:"q4", m:9, q:"<b>4</b> Using the sources and your own knowledge, evaluate the reasons for Japanese expansion in the years 1931–1941.",
+   help:["Plan three or four reasons, each with one source and one piece of own knowledge.","Starter: “Source A suggests that … This is supported by my own knowledge that … However, Source D …”","End with a judgement: which reason was most important, and did that change between 1931 and 1941?"],
+   check:["I used at least two sources","I added accurate own knowledge (dates, names, events)","I made a clear judgement, not just a list","I considered change between 1931 and 1941"],
+   a:"<b>Aim for an argued answer, not a list.</b> Possible structure:<ul class='tight'><li><b>Security:</b> Source A shows a long tradition of defining security in terms of buffer zones; link to fear of the USSR and Chinese nationalism in Manchuria.</li><li><b>Military independence:</b> Source B shows that the Mukden Incident was not self-defence; own knowledge: the Kwantung Army acted without Tokyo’s approval, and the right of supreme command.</li><li><b>Ideology and regional order:</b> Source C, the New Order (1938), later the Co-Prosperity Sphere (1940).</li><li><b>Economic pressure:</b> Source D and own knowledge of the embargo (August 1941), oil dependence, the Dutch East Indies.</li><li><b>Judgement:</b> e.g. military insubordination and opportunism explain 1931; the stalemate in China plus economic pressure explain 1941. Use a historian (Young, Barnhart, Bix, Iriye, Hotta).</li></ul><i>Markscheme note:</i> the top band (7–9) needs clear focus on the question, effective use of at least two sources and accurate own knowledge integrated into a synthesis."},
+  {id:"q5", m:0, ch:true, q:"<b>5</b> <span class='lvl cha'>Challenge</span> Source A dates from 1890. How far does it help an historian explain Japanese decisions in 1931–1941? Discuss continuity and change.",
+   help:["Continuity: which later policies still follow the “line of advantage” idea?","Change: what in 1937–1941 goes far beyond a defensive buffer zone?"],
+   check:["I gave an example of continuity","I gave an example of change","I reached a judgement on “how far”"],
+   a:"Continuity: Manchuria was described as Japan’s “lifeline” and treated as a buffer against the USSR, which fits Yamagata’s logic; the Kwantung Army’s planners thought in exactly these terms. Change: the war in China after 1937, the New Order and the move south to the Dutch East Indies were about resources and regional dominance, not a border buffer; and in 1890 civilians still controlled policy, unlike in the 1930s. A strong answer concludes that Source A explains the mindset and justification, but not the scale or the timing of the 1930s decisions."}
+];
+const ORDER = [
+  ["Treaty of Shimonoseki",1895.3,"#timeline"],["Anglo-Japanese Alliance",1902.1,"#timeline"],["Battle of Tsushima",1905.4,"#timeline"],["Annexation of Korea",1910.6,"#timeline"],
+  ["Washington Naval Conference",1921.9,"#timeline"],["Mukden Incident",1931.7,"#timeline"],["Japan leaves the League of Nations",1933.2,"#timeline"],["Marco Polo Bridge Incident",1937.5,"#timeline"],
+  ["Tripartite Pact",1940.7,"#pearl"],["US oil embargo",1941.6,"#pearl"]
+];
+const FACTORS = [
+  ["eco","Economic need","raw materials, Depression, markets",3,5,"The Depression made Manchuria attractive in 1931; in 1941 the oil embargo made resources the immediate issue."],
+  ["mil","Military independence","Kwantung Army, right of supreme command",5,3,"1931 was planned by Kwantung Army officers. In 1941 the decision went through Imperial Conferences: the army now dominated the state instead of defying it."],
+  ["sec","Security fears","USSR, Chinese nationalism",4,3,"Fear of the USSR and of Chinese nationalism shaped the Manchurian plan. By 1941 the Neutrality Pact had reduced the Soviet threat."],
+  ["ide","Ideology","kokutai, pan-Asianism, Co-Prosperity Sphere",3,3,"Pan-Asian ideas justified both decisions, but rarely decided their timing."],
+  ["wes","Western pressure","sanctions, embargo, “ABCD encirclement”",1,5,"There was little Western pressure in 1931. In 1941 the asset freeze and embargo set the clock."],
+  ["opp","Weak international order","League failure, Germany’s victories",3,4,"League weakness let 1931 succeed; Germany’s victories in 1940 opened Southeast Asia."]
+];
+const VOTES = [
+  ["1931","Mukden","Once the army got away with taking Manchuria, civilian control was broken and every later step followed.","But in 1933–37 Japan stopped at the Great Wall and relations with the West stayed workable."],
+  ["1937","Marco Polo Bridge","An unwinnable war in China created the need for resources and the conflict with the US over China’s future.","But the US did not impose serious sanctions until 1940–41."],
+  ["1940","Tripartite Pact","Allying with Hitler made Japan an enemy of Britain and, in American eyes, part of one global threat.","But talks with Washington continued for more than a year afterwards."],
+  ["1941","Oil embargo","Without oil, the fleet and army would stop within two years. After August, leaders saw only war or surrender.","But Japan could still have accepted withdrawal from China. War was a choice."]
+];
+const SIM = [
+  {when:"2 July 1941", title:"Germany has just invaded the Soviet Union",
+   text:"The army’s northern faction says: attack Siberia now, while the Red Army is busy. The navy wants the resources of the south. What do you advise the Imperial Conference?",
+   opts:[["Strike north: attack the Soviet Union in Siberia","Japan would fight the Red Army again, only two years after Nomonhan, while the China war still runs. It might help Germany, but the army doubted it had the strength, and the oil problem would remain unsolved."],
+         ["Move south: occupy southern French Indochina","Japan gains bases within reach of Malaya, Singapore and the Dutch East Indies. Washington is likely to see this as preparation for an attack and react sharply."],
+         ["Do neither: wait and keep negotiating with Washington","Talks could continue, but the army and navy want guaranteed oil, and the US asks for withdrawal from China. Waiting means the oil stockpile slowly shrinks."]],
+   hist:1, actual:"The conference chose to advance south “even at the risk of war with Britain and the United States”, while keeping the northern option open. Troops entered southern Indochina at the end of July."},
+  {when:"1 August 1941", title:"The oil stops",
+   text:"The US has frozen Japanese assets and stopped oil exports; Britain and the Netherlands follow. The navy says the stockpile will last about two years at most. What now?",
+   opts:[["Accept US terms: begin withdrawing from China and Indochina","Oil might flow again. But the army would see four years of war and huge losses wasted. Coups and assassinations, as in 1932 and 1936, were a real risk."],
+         ["Negotiate, but prepare for war at the same time, with a deadline","Diplomacy continues, but a deadline creates its own pressure: if talks fail, war preparations are already under way."],
+         ["Attack at once, while oil stocks are still full","The plans are not ready: the navy still needs months to prepare and rehearse an operation across the Pacific."]],
+   hist:1, actual:"The Imperial Conference of 6 September chose both at once: diplomacy until early October, and preparation for war if it failed."},
+  {when:"October 1941", title:"Konoe against Tōjō",
+   text:"Prime Minister Konoe wants a summit with Roosevelt and is ready to discuss some withdrawal from China. The army minister, General Tōjō, refuses any withdrawal. Who do you back?",
+   opts:[["Back Konoe: offer a phased withdrawal from China","The army minister could resign and bring down the cabinet; under the Meiji system the army could block any government. Washington had also refused a summit without agreement first."],
+         ["Back Tōjō: no withdrawal, keep the deadline","The road to war shortens. The army stays united behind the government."],
+         ["Propose a cabinet led by a prince of the imperial family","Prince Higashikuni was in fact considered. Palace advisers rejected the idea: if war came, the imperial family would be blamed."]],
+   hist:1, actual:"Konoe resigned on 16 October. The Lord Keeper of the Privy Seal, Kido Kōichi, recommended Tōjō, hoping that only an army man could control the army. Tōjō became prime minister on 18 October."},
+  {when:"26 November 1941", title:"The Hull note",
+   text:"The US demands withdrawal from China and Indochina. The same day the carrier strike force sails from the Kuril Islands; it can still be called back. Your final advice?",
+   opts:[["Accept the Hull note","Most of Japan’s leaders believed this meant national humiliation and possibly revolt in the army. It would also have ended the war in China on terms Japan had refused for four years."],
+         ["Go to war","Japan gains a head start of months in the Pacific, but against an enemy with many times its industrial power, as Yamamoto had warned."],
+         ["Recall the fleet and ask for more time","Each month without oil weakens Japan’s position. That was the navy’s main argument for striking now."]],
+   hist:1, actual:"On 1 December an Imperial Conference approved war. The attack on Pearl Harbor came on 7 December, Hawaii time."}
+];
+const QUIZ = [
+  ["Which treaty gave Taiwan to Japan?",["Treaty of Portsmouth","Treaty of Shimonoseki","Treaty of Versailles","Nine-Power Treaty"],1,"Shimonoseki (1895) ended the First Sino-Japanese War. Portsmouth (1905) ended the war with Russia.","#timeline"],
+  ["Why did the Triple Intervention of 1895 matter so much to Japanese leaders?",["It forced Japan to leave Korea","It showed that Western powers would deny Japan the gains they took for themselves","It started the Russo-Japanese War directly","It ended the unequal treaties"],1,"Russia, Germany and France made Japan return Liaodong, then Russia leased Port Arthur. Japanese leaders concluded that only military power earned respect.","#timeline"],
+  ["Which power was Japan’s ally from 1902 until the early 1920s?",["United States","Germany","Britain","France"],2,"The Anglo-Japanese Alliance (1902) lasted until it was replaced by the Four-Power Treaty at the Washington Conference.","#timeline"],
+  ["What did the 5:5:3 ratio of 1922 refer to?",["Shares of the Chinese market","Battleship tonnage for the US, Britain and Japan","Seats on the League Council","Immigration quotas"],1,"The Five-Power Treaty limited battleships. Many Japanese naval officers saw the lower ratio as an insult.","#explain"],
+  ["Who carried out the Mukden Incident in September 1931?",["Chinese nationalist soldiers","The Japanese cabinet","Officers of the Kwantung Army","The Soviet secret police"],2,"Kwantung Army officers, including Ishiwara Kanji and Itagaki Seishirō, staged the railway explosion without approval from Tokyo.","#timeline"],
+  ["What did the League of Nations do after the Lytton Report?",["Imposed oil sanctions on Japan","Adopted the report; Japan then left the League","Recognised Manchukuo","Sent troops to Manchuria"],1,"The Assembly adopted the report in February 1933 with only Japan voting against. There were no sanctions.","#timeline"],
+  ["What was the significance of the May 15 Incident (1932)?",["It started the war with China","It ended party-led cabinets after the murder of Prime Minister Inukai","It made Tōjō prime minister","It created Manchukuo"],1,"Until 1945 no party leader would again head a government. The assassins’ light sentences showed public sympathy for direct action.","#timeline"],
+  ["“Hokushin-ron” and “Nanshin-ron” describe…",["Two political parties","Strategies of northern and southern expansion","The army and navy budgets","Two imperial dynasties"],1,"Strike North (against the USSR, favoured by the army) or Strike South (to Southeast Asia, favoured by the navy). Nomonhan in 1939 weakened the northern option.","#explain"],
+  ["Which event most directly led to the US oil embargo of August 1941?",["The Tripartite Pact","The occupation of southern French Indochina","The fall of Nanjing","The Neutrality Pact with the USSR"],1,"Southern Indochina put Japanese bases within reach of Malaya, Singapore and the Dutch East Indies. The US froze Japanese assets on 26 July.","#pearl"],
+  ["What was the main demand of the Hull note (26 November 1941)?",["Japan must leave the Tripartite Pact only","Japan must withdraw its forces from China and Indochina","Japan must pay reparations","Japan must hand over its fleet"],1,"The note asked for withdrawal from China and Indochina. Tokyo’s leaders were not willing to give up four years of war in China.","#pearl"],
+  ["What did Japan most need from the strike on Pearl Harbor?",["The conquest of Hawaii","Time: to stop the US fleet interfering while Japan took Southeast Asia","A US surrender","Control of the Panama Canal"],1,"Yamamoto hoped for six months to a year. The main goal was the resources of Southeast Asia, especially Dutch oil.","#pearl"],
+  ["Which historian argues that Emperor Hirohito played an active role in war decisions?",["Louise Young","Herbert Bix","Akira Iriye","James Crowley"],1,"Bix (2000) challenged the postwar image of a powerless constitutional monarch. Young focuses on popular support for empire.","#historians"]
+];
+const GLOSS = [
+  ["Meiji Restoration","明治維新","1868: the return of power to the Emperor and the start of rapid Western-style modernisation.","Meiji-restauraatio"],
+  ["Genrō","元老","Elder statesmen of the Meiji era who advised the Emperor and chose prime ministers. By the 1930s only Saionji Kinmochi was left.","vanhimmat valtiomiehet"],
+  ["Zaibatsu","財閥","Family-controlled business conglomerates such as Mitsui and Mitsubishi, closely tied to the state and to empire.","suuryhtymät, konglomeraatit"],
+  ["Kokutai","国体","The “national polity”: the idea of Japan as a unique family-state under a divine Emperor.","kansallinen olemus, valtiomuoto"],
+  ["Imperial Conference","御前会議","A meeting of top ministers and military chiefs in the Emperor’s presence, used for the biggest decisions of 1941.","keisarillinen neuvottelukokous"],
+  ["Kwantung Army","関東軍","The Japanese army garrison in the Kwantung Leased Territory and along the South Manchuria Railway. It planned the Mukden Incident.","Kwantungin armeija"],
+  ["Gekokujō","下剋上","“The low overthrowing the high”: junior officers acting against or ahead of their superiors.","alempien kapina ylempiä vastaan"],
+  ["Manchukuo","満洲国","The puppet state in Manchuria, 1932–1945, led in name by Puyi.","Mantšukuo"],
+  ["Puppet state","","A state that is formally independent but in reality controlled by a foreign power.","nukkevaltio"],
+  ["Autarky","","Economic self-sufficiency: being able to produce what you need, especially for war, without imports.","omavaraisuus"],
+  ["Hakkō ichiu","八紘一宇","“The eight corners of the world under one roof”: a slogan used to justify Japanese leadership in Asia.","”kahdeksan maailmankolkkaa saman katon alle”"],
+  ["Kōdōha / Tōseiha","皇道派 / 統制派","Rival army factions: radical “Imperial Way” officers against the “Control” faction of total-war planners.","keisarillisen tien ryhmä / kontrolliryhmä"],
+  ["Hokushin-ron / Nanshin-ron","北進論 / 南進論","Strategies of expansion north (against the USSR) or south (to Southeast Asia).","pohjoiseen / etelään laajenemisen oppi"],
+  ["Greater East Asia Co-Prosperity Sphere","大東亜共栄圏","Japan’s 1940 plan for an Asian bloc under its leadership, presented as liberation from Western colonialism.","Suur-Itä-Aasian yhteisvaurauden piiri"],
+  ["Embargo","","A government ban on trade with a country, for example on oil exports.","kauppasaarto, vientikielto"],
+  ["ABCD encirclement","ABCD包囲網","Japanese term for the economic pressure of America, Britain, China and the Dutch in 1941.","ABCD-saarto"]
+];
+const GOALS = [["G1","Chronology: put events in order and link them"],["G2","Causation: weigh the causes in 1931 and 1941"],["G3","International response: explain why Japan was not stopped"],["G4","Sources and historians: analyse and use them"]];
+const NEXT = {
+  G1:"Reread the timeline one phase at a time and redo Task 1.",
+  G2:"Redo Task 2 and compare with the historian’s weighting; then reread section 03.",
+  G3:"Reread section 04 and quiz questions 6, 9 and 10.",
+  G4:"Open the help boxes in section 06 and try questions 1(b) and 2 again with the checklist."
+};
+/* ===================================================================================== */
+
+/* ---------- Route and progress ---------- */
+const filled = id => { const e=document.getElementById(id); return !!(e && e.value.trim()); };
+const ROUTE = [
+  {id:"timeline", label:"Read the timeline", href:"#timeline", t:"10 min", done:()=>store.get("read",{}).timeline},
+  {id:"order", label:"Task 1: put the empire in order", href:"#task1", t:"5 min", done:()=>store.get("orderChecked",false)},
+  {id:"explain", label:"Read: why did Japan expand?", href:"#explain", t:"10 min", done:()=>store.get("read",{}).explain},
+  {id:"gauge", label:"Task 2: causation gauge", href:"#task2", t:"10 min", done:()=>filled("gaugeWhy")},
+  {id:"pearl", label:"Read: the road to Pearl Harbor", href:"#pearl", t:"5 min", done:()=>store.get("read",{}).pearl},
+  {id:"sim", label:"Task 5: simulation, Tokyo 1941", href:"#task5", t:"15 min", done:()=>store.get("simDone",false)},
+  {id:"vote", label:"Task 4: point of no return", href:"#task4", t:"10 min", done:()=>!!store.get("vote",null)},
+  {id:"historians", label:"Read: what historians argue", href:"#historians", t:"10 min", done:()=>store.get("read",{}).historians},
+  {id:"sources", label:"Task 3: Paper 1 sources (3 answers or more)", href:"#sources", t:"20 min", done:()=>P1.filter(p=>filled("a-"+p.id)).length>=3},
+  {id:"quiz", label:"Quiz: all 12 questions", href:"#quiz", t:"10 min", done:()=>Object.keys(store.get("quiz",{})).length>=QUIZ.length},
+  {id:"essay", label:"Task 6: essay plan", href:"#task6", t:"30 min", done:()=>filled("p-thesis")&&filled("p-concl")},
+  {id:"exit", label:"Task 7: exit ticket and self-assessment", href:"#task7", t:"5 min", done:()=>Object.keys(store.get("sa",{})).length>=GOALS.length}
+];
+const PATH_ORDER = {
+  support:["timeline","order","explain","gauge","quiz","pearl","sim","vote","historians","sources","essay","exit"],
+  core:ROUTE.map(r=>r.id),
+  challenge:ROUTE.map(r=>r.id)
+};
+const PATH_INFO = {
+  support:"<b>Support path.</b> First read the “big picture” box in section 01 and the key terms (section 09), including the Finnish translations. Then follow the route below. The quiz comes earlier to check the basics. Sentence starters and help boxes are open in every writing task. In section 06, start with questions 1(a), 1(b) and 2.",
+  core:"<b>Core path.</b> Follow the route below in order. Help boxes are closed but available: open them whenever you get stuck.",
+  challenge:"<b>Challenge path.</b> Follow the full route and add the tasks marked <span class='lvl cha'>Challenge</span>: Paper 1 question 5, the historians paragraph in section 05 and the Abyssinia comparison in the essay plan. In the simulation, write down which decision point you think Eri Hotta would call decisive, and why."
+};
+let refreshQueued=false;
+function refreshProgress(){
+  if(refreshQueued) return; refreshQueued=true;
+  requestAnimationFrame(()=>{ refreshQueued=false;
+    const path=store.get("path","core"); const order=PATH_ORDER[path]||PATH_ORDER.core;
+    const ol=$("#route"); if(!ol) return; ol.innerHTML="";
+    let n=0;
+    order.forEach((id,k)=>{ const r=ROUTE.find(x=>x.id===id); const d=!!r.done(); if(d)n++;
+      const li=el("li",{class:d?"done":""}); li.innerHTML=`<span class="st" aria-hidden="true">${d?"✓":k+1}</span><a href="${r.href}">${r.label}<span class="sr-only">${d?", done":", not done yet"}</span></a><span class="t">${r.t}</span>`; ol.appendChild(li); });
+    const pct=Math.round(n/ROUTE.length*100);
+    $("#routebar").style.width=pct+"%"; $("#navbar").style.width=pct+"%";
+    $("#routecount").textContent=`${n} of ${ROUTE.length} done`; $("#navcount").textContent=`${n}/${ROUTE.length}`;
+  });
+}
+function drawPaths(){
+  const apply=p=>{
+    $$(".path").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.path===p)));
+    $("#pathInfo").innerHTML=PATH_INFO[p];
+    $$("details.scaf").forEach(d=>{ d.open = (p==="support"); });
+    document.body.dataset.path=p;
+  };
+  $$(".path").forEach(b=>b.addEventListener("click",()=>{ store.set("path",b.dataset.path); apply(b.dataset.path); }));
+  apply(store.get("path","core"));
+}
+function drawReadButtons(){
+  $$("[data-read]").forEach(box=>{
+    const k=box.dataset.read;
+    const render=()=>{ const r=store.get("read",{}); const d=!!r[k];
+      box.innerHTML=`<button class="btn ${d?"ghost":""}" type="button" aria-pressed="${d}">${d?"✓ Marked as read":"Mark as read"}</button>`;
+      $("button",box).onclick=()=>{ const r2=store.get("read",{}); r2[k]=!r2[k]; store.set("read",r2); render(); }; };
+    render();
+  });
+}
+
+/* ---------- Scrollspy ---------- */
+function scrollSpy(){
+  const links=$$("#navlinks a"); const map=new Map(links.map(a=>[a.getAttribute("href").slice(1),a]));
+  const btn=$("#menuBtn"), menu=$("#navlinks"), cur=$("#curSec");
+  const setOpen=o=>{ menu.hidden=!o; btn.setAttribute("aria-expanded",String(o)); if(o){ (menu.querySelector('[aria-current="true"]')||links[0]).focus(); } };
+  btn.addEventListener("click",()=>setOpen(menu.hidden));
+  links.forEach(a=>a.addEventListener("click",()=>setOpen(false)));
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape" && !menu.hidden){ setOpen(false); btn.focus(); } });
+  document.addEventListener("click",e=>{ if(!menu.hidden && !menu.contains(e.target) && !btn.contains(e.target)) setOpen(false); });
+  if(!("IntersectionObserver" in window)) return;
+  const obs=new IntersectionObserver(entries=>{ entries.forEach(en=>{ if(en.isIntersecting){ links.forEach(a=>a.removeAttribute("aria-current")); const a=map.get(en.target.id); if(a){ a.setAttribute("aria-current","true"); cur.textContent=a.textContent.replace(/^\d+/,m=>m+" · "); } } }); },{rootMargin:"-45% 0px -50% 0px"});
+  $$("main section[id]").forEach(s=>obs.observe(s));
+}
+
+/* ---------- Expansion chart ---------- */
+function drawEmpire(){
+  const svg=$("#empireChart"); const W=900,H=470,L=230,R=20,T=16,B=40;
+  const x0=1894,x1=1942; const sx=y=>L+(y-x0)/(x1-x0)*(W-L-R);
+  const rowH=(H-T-B)/TERR.length;
+  const pc=Object.fromEntries(PHASES.map(p=>[p.id,p.c]));
+  let s="";
+  for(let y=1895;y<=1940;y+=5){ const x=sx(y); s+=`<line x1="${x}" x2="${x}" y1="${T}" y2="${H-B}" stroke="var(--grid)" stroke-width="1"/><text x="${x}" y="${H-B+20}" fill="var(--axis-text)" font-size="12" text-anchor="middle" font-family="IBM Plex Mono, monospace">${y}</text>`; }
+  s+=`<line x1="${L}" x2="${W-R}" y1="${H-B}" y2="${H-B}" stroke="var(--axis)" stroke-width="1"/>`;
+  const px=sx(1941.93);
+  s+=`<line x1="${px}" x2="${px}" y1="${T}" y2="${H-B}" stroke="var(--shu)" stroke-width="2" stroke-dasharray="4 3"/><text x="${px-4}" y="${H-B+20}" fill="var(--shu)" font-size="12" text-anchor="end" font-family="IBM Plex Mono, monospace">Dec 1941</text>`;
+  TERR.forEach((d,i)=>{
+    const y=T+i*rowH, h=Math.min(18,rowH-8), cy=y+(rowH-h)/2;
+    const xa=sx(d.a), xb=Math.max(sx(d.b),xa+6);
+    const desc=`${d.t}: ${Math.floor(d.a)}${d.b<1941?" to "+d.b:" onward"}. ${d.how}.`;
+    s+=`<text x="${L-10}" y="${cy+h/2+4}" fill="var(--ink)" font-size="13" text-anchor="end" font-family="Zen Kaku Gothic New, sans-serif" aria-hidden="true">${d.t}</text>`;
+    s+=`<rect class="bar" data-i="${i}" x="${xa}" y="${cy}" width="${xb-xa}" height="${h}" rx="4" fill="${pc[d.p]}" aria-hidden="true"/>`;
+    if(xb-xa>40) s+=`<text x="${xa+6}" y="${cy+h/2+4}" fill="#0b0b0b" font-size="11" font-weight="500" font-family="IBM Plex Mono, monospace" pointer-events="none" aria-hidden="true">${Math.floor(d.a)}</text>`;
+    s+=`<rect class="hit" data-i="${i}" x="${L}" y="${y}" width="${W-L-R}" height="${rowH}" fill="transparent" tabindex="0" role="img" aria-label="${desc}"/>`;
+  });
+  svg.innerHTML=s;
+  const tip=$("#tip");
+  const show=(i,x,y)=>{ const d=TERR[i]; tip.innerHTML=`<b>${d.t}</b><br>${Math.floor(d.a)}${d.b<1941?"–"+d.b:" onward"}<br>${d.how}`; tip.style.left=Math.min(x+14,innerWidth-280)+"px"; tip.style.top=(y+14)+"px"; tip.style.opacity=1; svg.querySelector(`.bar[data-i="${i}"]`).setAttribute("opacity",".8"); };
+  const hide=i=>{ tip.style.opacity=0; svg.querySelector(`.bar[data-i="${i}"]`).removeAttribute("opacity"); };
+  $$(".hit",svg).forEach(r=>{ const i=+r.dataset.i;
+    r.addEventListener("mousemove",e=>show(i,e.clientX,e.clientY));
+    r.addEventListener("mouseleave",()=>hide(i));
+    r.addEventListener("focus",()=>{ const b=svg.querySelector(`.bar[data-i="${i}"]`).getBoundingClientRect(); show(i,b.left,b.bottom); });
+    r.addEventListener("blur",()=>hide(i));
+  });
+  $("#chartLegend").innerHTML=PHASES.map(p=>`<span><i style="background:${p.c}"></i>${p.n}. ${p.name} (${p.yrs})</span>`).join("");
+  $("#empireTable tbody").innerHTML=TERR.map(d=>`<tr><th scope="row" style="font-weight:400;color:var(--ink)">${d.t}</th><td class="mono">${Math.floor(d.a)}</td><td class="mono">${d.b<1941?d.b:"1941+"}</td><td>${d.how}</td></tr>`).join("");
+}
+
+/* ---------- Timeline ---------- */
+function drawTimeline(){
+  const f=$("#phaseFilters");
+  const opts=[{id:"all",label:"All phases"}].concat(PHASES.map(p=>({id:p.id,label:`${p.n}. ${p.yrs}`})));
+  let active=store.get("phase","all");
+  const render=()=>{
+    f.innerHTML="";
+    opts.forEach(o=>{ const b=el("button",{class:"chip",type:"button","aria-pressed":String(o.id===active),id:"chip-"+o.id},o.label); b.onclick=()=>{active=o.id;store.set("phase",active);render();}; f.appendChild(b); });
+    const list=$("#timelineList"); list.innerHTML="";
+    PHASES.filter(p=>active==="all"||p.id===active).forEach(p=>{
+      const blk=el("div",{class:"phase-block"});
+      blk.innerHTML=`<div class="phase-title"><span class="num" aria-hidden="true">${p.n}</span><h3><span class="sr-only">Phase ${p.n}: </span>${p.name}</h3><span class="mono">${p.yrs}</span></div>`;
+      const ul=el("ul",{class:"events"});
+      EVENTS.filter(e=>e[0]===p.id).forEach(e=>{
+        const li=el("li",{class:"ev"+(e[4]?" tp":""),style:`--pc:${p.c}`});
+        li.innerHTML=`<div class="d">${e[1]}</div><h4>${e[2]}${e[4]?'<span class="tpflag">turning point?</span>':""}</h4><p>${e[3]}</p>`;
+        ul.appendChild(li);
+      });
+      blk.appendChild(ul);
+      const tid="think-"+p.id;
+      const th=el("div",{class:"think"});
+      th.innerHTML=`<div class="eyebrow">Stop and think</div><label for="${tid}" style="font-weight:500">${p.think}</label><textarea id="${tid}" rows="2" placeholder="Your answer in one or two sentences"></textarea><details><summary>Compare with one possible answer</summary><p style="margin-top:6px">${p.ans}</p></details>`;
+      blk.appendChild(th);
+      list.appendChild(blk);
+    });
+    persistFields(list);
+  };
+  render();
+}
+
+/* ---------- Paper 1 ---------- */
+function drawP1(){
+  const box=$("#paper1");
+  P1.forEach(p=>{
+    const d=el("div",{class:"q"});
+    const checks=p.check.map((c,k)=>`<label><input type="checkbox" id="chk-${p.id}-${k}"> <span>${c}</span></label>`).join("");
+    d.innerHTML=`<div class="qh"><div id="ql-${p.id}">${p.q}</div>${p.m?`<span class="marks">[${p.m} marks]</span>`:""}</div>
+      <details class="scaf"><summary>Need help? How to start</summary><ul>${p.help.map(h=>`<li>${h}</li>`).join("")}</ul></details>
+      <textarea id="a-${p.id}" rows="${p.m>4||p.ch?6:3}" placeholder="Your answer" aria-labelledby="ql-${p.id}"></textarea>
+      <div class="row"><button class="btn ghost" type="button" id="b-${p.id}" aria-expanded="false" aria-controls="m-${p.id}">Show model answer</button></div>
+      <div class="ms" id="m-${p.id}">${p.a}<div class="selfcheck" role="group" aria-label="Check your own answer"><b>Check your own answer:</b>${checks}</div></div>`;
+    box.appendChild(d);
+    const btn=$("#b-"+p.id,d), ms=$("#m-"+p.id,d);
+    btn.onclick=()=>{ if(!filled("a-"+p.id) && !ms.classList.contains("open") && !btn.dataset.warned){ btn.dataset.warned="1"; btn.textContent="Write your own answer first, or select again to open anyway"; return; }
+      const o=ms.classList.toggle("open"); btn.setAttribute("aria-expanded",String(o)); btn.textContent=o?"Hide model answer":"Show model answer"; };
+  });
+  box.appendChild(el("div",{class:"row",style:"margin-top:6px"},`<button class="btn" type="button" data-copy="p1">Copy all my source answers</button><span class="status" id="copy-p1" aria-live="polite"></span>`));
+}
+
+/* ---------- Task 1 ---------- */
+function drawOrder(){
+  const pool=$("#orderPool"), done=$("#orderDone"), st=$("#orderStatus"), fb=$("#orderFeedback");
+  let placed=[];
+  const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+  let items=shuffle(ORDER.map((o,i)=>i));
+  const render=()=>{
+    pool.innerHTML=""; done.innerHTML=""; fb.innerHTML="";
+    items.filter(i=>!placed.includes(i)).forEach(i=>{ const b=el("button",{class:"ochip",type:"button"},ORDER[i][0]); b.onclick=()=>{placed.push(i);st.textContent=`Placed ${ORDER[i][0]} as number ${placed.length}.`;render(); const nb=pool.querySelector("button"); if(nb) nb.focus(); else $("#orderCheck").focus(); }; pool.appendChild(b); });
+    if(!placed.length) done.innerHTML='<span class="muted" style="font-size:14px;padding:6px">Your timeline appears here.</span>';
+    placed.forEach((i,k)=>{ const b=el("button",{class:"ochip placed",type:"button","data-i":i,"aria-label":`${k+1}. ${ORDER[i][0]}. Select to remove.`},`<span class="mono">${k+1}.</span> ${ORDER[i][0]}`); b.onclick=()=>{placed=placed.filter(x=>x!==i);st.textContent=`Removed ${ORDER[i][0]}.`;render();}; done.appendChild(b); });
+  };
+  $("#orderCheck").onclick=()=>{
+    if(placed.length<ORDER.length){ st.textContent=`Place all ${ORDER.length} events first (${placed.length} placed).`; return; }
+    const sorted=placed.slice().sort((a,b)=>ORDER[a][1]-ORDER[b][1]); let ok=0; const wrong=[];
+    $$(".ochip",done).forEach((b,k)=>{ const i=+b.dataset.i; const good=sorted[k]===i; if(good)ok++; else wrong.push(i); b.classList.add(good?"ok":"no"); b.innerHTML+=` <span class="mono">${Math.floor(ORDER[i][1])}</span>${good?"":' <span class="sr-only">wrong place</span>'}`; });
+    st.textContent = ok===ORDER.length ? "All 10 in the right place. Well done." : `${ok} of 10 in the right place. The years are now shown; the red ones are in the wrong place.`;
+    if(wrong.length){ fb.innerHTML=`<p style="font-size:15px"><b>Why it matters:</b> getting the order right is how you see cause and effect. Tip: the alliance with Britain (1902) came <i>before</i> the war with Russia, and gave Japan the confidence to fight it. Reread: ${[...new Set(wrong.map(i=>ORDER[i][2]))].map(h=>`<a href="${h}">${h==="#pearl"?"Road to Pearl Harbor":"Timeline"}</a>`).join(", ")}.</p>`; }
+    store.set("orderChecked",true); store.set("orderScore",ok);
+  };
+  $("#orderReset").onclick=()=>{placed=[];items=shuffle(items);st.textContent="Shuffled. Start again.";render();};
+  render();
+  $("#orderKey").innerHTML=ORDER.slice().sort((a,b)=>a[1]-b[1]).map(o=>`<li>${o[0]} (${Math.floor(o[1])})</li>`).join("");
+}
+
+/* ---------- Task 2 ---------- */
+function drawGauge(){
+  const g=$("#gauge"); const vals=store.get("gauge",{}); let showRef=false;
+  FACTORS.forEach(([k,n,s])=>{
+    g.appendChild(el("div",{class:"f"},`<b>${n}</b><span>${s}</span>`));
+    ["31","41"].forEach(y=>{
+      const id=`g-${k}-${y}`; const v=vals[id]??2; const yr=y==="31"?"1931":"1941";
+      const w=el("div"); w.innerHTML=`<label for="${id}" class="sr-only">${n}, ${yr}</label><input type="range" min="0" max="5" step="1" id="${id}" value="${v}" class="${y==="41"?"r41":""}" aria-valuetext="${v} of 5"><span class="rv" id="${id}-v" aria-hidden="true">${yr}: ${v}</span>`;
+      g.appendChild(w);
+      $("input",w).addEventListener("input",e=>{ vals[id]=+e.target.value; store.set("gauge",vals); e.target.setAttribute("aria-valuetext",`${e.target.value} of 5`); $("#"+id+"-v").textContent=`${yr}: ${e.target.value}`; chart(); });
+    });
+  });
+  const chart=()=>{
+    const svg=$("#gaugeChart"), W=700,H=250,L=30,B=56,T=14,bw=22,gap=2;
+    const groupW=(W-L-10)/FACTORS.length; const sy=v=>T+(H-T-B)*(1-v/5);
+    let s="";
+    for(let v=0;v<=5;v++){ const y=sy(v); s+=`<line x1="${L}" x2="${W-10}" y1="${y}" y2="${y}" stroke="${v===0?"var(--axis)":"var(--grid)"}"/><text x="${L-8}" y="${y+4}" font-size="11" fill="var(--axis-text)" text-anchor="end" font-family="IBM Plex Mono, monospace">${v}</text>`; }
+    const parts=[];
+    FACTORS.forEach(([k,n,,r31,r41],i)=>{
+      const cx=L+groupW*i+groupW/2;
+      const v31=+$("#g-"+k+"-31").value, v41=+$("#g-"+k+"-41").value; parts.push(`${n}: 1931 ${v31}, 1941 ${v41}`);
+      [[v31,"var(--s1)",-1,r31],[v41,"var(--s2)",1,r41]].forEach(([v,c,dir,ref])=>{
+        const x=dir<0?cx-bw-gap/2:cx+gap/2; const top=sy(v), base=sy(0);
+        if(v>0) s+=`<path d="M${x},${base} V${top+4} q0,-4 4,-4 h${bw-8} q4,0 4,4 V${base} Z" fill="${c}"/>`;
+        if(showRef){ const ry=sy(ref); s+=`<line x1="${x-3}" x2="${x+bw+3}" y1="${ry}" y2="${ry}" stroke="var(--paper)" stroke-width="5"/><line x1="${x-3}" x2="${x+bw+3}" y1="${ry}" y2="${ry}" stroke="var(--ink)" stroke-width="2"/>`; }
+      });
+      const words=n.split(" "); s+=`<text x="${cx}" y="${H-B+18}" font-size="12" fill="var(--ink)" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif">${words[0]}</text><text x="${cx}" y="${H-B+34}" font-size="12" fill="var(--ink)" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif">${words.slice(1).join(" ")}</text>`;
+    });
+    svg.innerHTML=s; $("#gaugeSummary").textContent="Your ratings. "+parts.join("; ")+".";
+  };
+  const rb=$("#refBtn"), box=$("#refBox");
+  box.innerHTML=`<p><b>One defensible weighting, not “the answer”.</b> Where do you disagree, and can you justify it with evidence?</p><div style="overflow-x:auto;margin-top:8px"><table><thead><tr><th scope="col">Factor</th><th scope="col">1931</th><th scope="col">1941</th><th scope="col">Reasoning</th></tr></thead><tbody>${FACTORS.map(f=>`<tr><th scope="row" style="font-weight:500;color:var(--ink)">${f[1]}</th><td class="mono">${f[3]}</td><td class="mono">${f[4]}</td><td>${f[5]}</td></tr>`).join("")}</tbody></table></div>`;
+  rb.onclick=()=>{ showRef=!showRef; box.hidden=!showRef; $("#refLegend").hidden=!showRef; rb.setAttribute("aria-expanded",String(showRef)); rb.textContent=showRef?"Hide the historian’s weighting":"Compare with a historian’s weighting"; chart(); };
+  chart();
+}
+
+/* ---------- Task 4 ---------- */
+function drawVote(){
+  const box=$("#vote");
+  const render=()=>{ const pick=store.get("vote",null); box.innerHTML="";
+    VOTES.forEach(([y,t,pro,con])=>{
+      const c=el("div",{class:"card"}); c.innerHTML=`<div class="yr">${y}</div><b>${t}</b><p>${pro}</p><p class="con">${con}</p>`;
+      const b=el("button",{class:pick===y?"btn":"btn ghost",type:"button","aria-pressed":String(pick===y),id:"vote-"+y}, pick===y?"✓ My choice":"Choose "+y);
+      b.onclick=()=>{store.set("vote",y);render();$("#vote-"+y).focus();}; c.appendChild(b); box.appendChild(c); }); };
+  render();
+}
+
+/* ---------- Task 5: simulation ---------- */
+function drawSim(){
+  const box=$("#sim");
+  const render=()=>{
+    const st=store.get("sim",{step:0,choices:[]});
+    box.innerHTML="";
+    const dots=el("div",{class:"simdots","aria-hidden":"true"}); SIM.forEach((_,i)=>dots.appendChild(el("i",{class:i<=st.step?"on":""}))); box.appendChild(dots);
+    if(st.step>=SIM.length){
+      const same=st.choices.filter((c,i)=>c===SIM[i].hist).length;
+      box.appendChild(el("h4",{},"Debrief"));
+      box.appendChild(el("p",{},`You followed history at <b>${same} of ${SIM.length}</b> decision points.`));
+      const ul=el("ul",{class:"tight"}); SIM.forEach((s,i)=>{ ul.appendChild(el("li",{},`<b>${s.when}:</b> you chose “${s.opts[st.choices[i]][0]}”${st.choices[i]===s.hist?" (as in history)":`; history: “${s.opts[s.hist][0]}”`}`)); }); box.appendChild(ul);
+      box.appendChild(el("div",{},`<label for="simReflect">Did Japan’s leaders have a real choice in 1941? Answer in two or three sentences, using one decision point as evidence.</label>`));
+      const ta=el("textarea",{id:"simReflect",rows:"3"}); box.appendChild(ta); persistFields(box);
+      const r=el("div",{class:"row"}); const again=el("button",{class:"btn ghost",type:"button"},"Play again"); again.onclick=()=>{store.set("sim",{step:0,choices:[]});render();}; r.appendChild(again); box.appendChild(r);
+      store.set("simDone",true); return;
+    }
+    const s=SIM[st.step]; const chosen=st.choices[st.step];
+    box.appendChild(el("div",{class:"when"},`Decision ${st.step+1} of ${SIM.length} · ${s.when}`));
+    box.appendChild(el("h4",{id:"simTitle",tabindex:"-1"},s.title));
+    box.appendChild(el("p",{},s.text));
+    const o=el("div",{class:"opts",role:"group","aria-labelledby":"simTitle"});
+    s.opts.forEach(([t],k)=>{ const b=el("button",{class:"opt"+(chosen===k?" chosen":""),type:"button",id:`sim-${st.step}-${k}`},`${String.fromCharCode(65+k)}. ${t}`); if(chosen!==undefined) b.disabled=true;
+      b.onclick=()=>{ const s2=store.get("sim",{step:0,choices:[]}); s2.choices[s2.step]=k; store.set("sim",s2); render(); const nx=$("#simNext"); if(nx) nx.focus(); }; o.appendChild(b); });
+    box.appendChild(o);
+    if(chosen!==undefined){
+      const res=el("div",{class:"res"});
+      res.innerHTML=`<div class="cf"><b>What might have followed</b> (a reasoned guess, not a fact): ${s.opts[chosen][1]}</div><div class="hist"><b>What actually happened:</b> ${s.actual}</div>`;
+      box.appendChild(res);
+      const r=el("div",{class:"row"}); const nx=el("button",{class:"btn",type:"button",id:"simNext"},st.step+1<SIM.length?"Next decision":"See the debrief");
+      nx.onclick=()=>{ const s2=store.get("sim",{step:0,choices:[]}); s2.step++; store.set("sim",s2); render(); const h=$("#simTitle"); if(h) h.focus(); else { const ta=$("#simReflect"); if(ta) ta.focus(); } }; r.appendChild(nx); box.appendChild(r);
+    }
+  };
+  render();
+}
+
+/* ---------- Task 7: self-assessment ---------- */
+function drawSelfAssess(){
+  const fs=$("#selfAssess"); const sa=store.get("sa",{});
+  GOALS.forEach(([g,t])=>{
+    const row=el("div",{class:"sarow"}); row.innerHTML=`<span id="sa-l-${g}"><b>${g}</b> ${t}</span>`;
+    const opts=el("div",{class:"opts3",role:"radiogroup","aria-labelledby":`sa-l-${g}`});
+    [["1","Not yet"],["2","Partly"],["3","Confidently"]].forEach(([v,l])=>{ const id=`sa-${g}-${v}`;
+      const lab=el("label",{for:id},`<input type="radio" name="sa-${g}" id="${id}" value="${v}" ${sa[g]===v?"checked":""}><span>${l}</span>`);
+      $("input",lab).addEventListener("change",()=>{ const s=store.get("sa",{}); s[g]=v; store.set("sa",s); next(); }); opts.appendChild(lab); });
+    row.appendChild(opts); fs.appendChild(row);
+  });
+  const next=()=>{ const s=store.get("sa",{}); const weak=GOALS.filter(([g])=>s[g]&&s[g]!=="3");
+    const box=$("#nextSteps");
+    if(!Object.keys(s).length){ box.innerHTML='<p class="muted" style="font-size:15px">Rate yourself above to see your next steps.</p>'; return; }
+    box.innerHTML = weak.length ? `<b>Your next steps</b><ul class="tight">${weak.map(([g])=>`<li><b>${g}:</b> ${NEXT[g]}</li>`).join("")}</ul>` : `<b>Your next step:</b> you feel confident on every goal you rated. Try the <span class="lvl cha">Challenge</span> tasks or write the full essay.`; };
+  next();
+}
+
+/* ---------- Quiz ---------- */
+function drawQuiz(){
+  const box=$("#quizBox"), sc=$("#score");
+  const update=()=>{ const a=store.get("quiz",{}); const n=Object.keys(a).filter(i=>a[i]===QUIZ[i][2]).length; sc.textContent=`Score ${n} / ${QUIZ.length} · answered ${Object.keys(a).length}`; };
+  const render=()=>{
+    box.innerHTML=""; const saved=store.get("quiz",{});
+    QUIZ.forEach(([q,opts,right,why,href],i)=>{
+      const d=el("div",{class:"qq"}); d.innerHTML=`<p id="qz-${i}"><b>${i+1}.</b> ${q}</p>`;
+      const o=el("div",{class:"opts",role:"group","aria-labelledby":`qz-${i}`}); const w=el("div",{class:"why","aria-live":"polite"});
+      const reveal=k=>{ $$("button",o).forEach((x,j)=>{x.disabled=true; if(j===right){x.classList.add("right"); x.insertAdjacentHTML("beforeend",' <span class="sr-only">(correct answer)</span>');}});
+        if(k!==right){ o.children[k].classList.add("wrong"); o.children[k].insertAdjacentHTML("beforeend",' <span class="sr-only">(your answer, wrong)</span>'); }
+        w.innerHTML=(k===right?"<b>Correct.</b> ":"<b>Not quite.</b> ")+why+(k===right?"":` <a href="${href}">Reread this part</a>.`); w.classList.add("show"); };
+      opts.forEach((t,k)=>{ const b=el("button",{class:"opt",type:"button",id:`quiz-${i}-${k}`},t); b.onclick=()=>{ const a=store.get("quiz",{}); a[i]=k; store.set("quiz",a); reveal(k); update(); }; o.appendChild(b); });
+      d.appendChild(o); d.appendChild(w); box.appendChild(d);
+      if(saved[i]!==undefined) reveal(saved[i]);
+    });
+    update();
+  };
+  $("#quizReset").onclick=()=>{ store.set("quiz",{}); render(); };
+  render();
+}
+
+/* ---------- Glossary & feedback ---------- */
+function drawGloss(){ $("#glossList").innerHTML=GLOSS.map(([t,j,d,fi])=>`<div><dt>${t}${j?`<span class="jp" lang="ja">${j}</span>`:""}</dt><dd>${d}</dd><dd class="fi" lang="fi">${fi}</dd></div>`).join(""); }
+function drawFeedback(){
+  const fs=$("#fbRate"); const cur=store.get("fbRate",null);
+  [["1","1 · not useful"],["2","2"],["3","3"],["4","4"],["5","5 · very useful"]].forEach(([v,l])=>{ const id="fb-"+v;
+    const lab=el("label",{for:id,style:"font-weight:400;display:flex;gap:4px;align-items:center;border:1px solid var(--line);border-radius:6px;padding:4px 10px;cursor:pointer"},`<input type="radio" name="fbRate" id="${id}" value="${v}" ${cur===v?"checked":""}><span>${l}</span>`);
+    $("input",lab).addEventListener("change",()=>store.set("fbRate",v)); fs.appendChild(lab); });
+}
+
+/* ---------- Saved text fields ---------- */
+function persistFields(root=document){
+  $$("textarea[id], input[type=text][id], input[type=checkbox][id]",root).forEach(f=>{
+    if(f.dataset.bound) return; f.dataset.bound="1";
+    if(f.type==="checkbox"){ f.checked=!!store.get("c:"+f.id,false); f.addEventListener("change",()=>store.set("c:"+f.id,f.checked)); return; }
+    const v=store.get("f:"+f.id,""); if(v) f.value=v;
+    f.addEventListener("input",()=>store.set("f:"+f.id,f.value));
+  });
+}
+
+/* ---------- Copy ---------- */
+const val=id=>{ const e=document.getElementById(id); return e?e.value.trim():""; };
+const COPY={
+  p1:()=>"PAPER 1 SOURCE ANSWERS — Japanese expansion\n\n"+P1.map(p=>`${p.q.replace(/<[^>]+>/g,"")}\n${val("a-"+p.id)||"(no answer)"}\n`).join("\n"),
+  gauge:()=>"CAUSATION GAUGE 1931 vs 1941\n"+FACTORS.map(([k,n])=>`${n}: 1931 = ${val("g-"+k+"-31")}, 1941 = ${val("g-"+k+"-41")}`).join("\n")+"\n\nChanged most: "+(val("gaugeWhy")||"(no answer)"),
+  plan:()=>"ESSAY PLAN — Economic factors and Japanese expansion 1931–1941\n\nThesis: "+val("p-thesis")+"\n\n1. Economic: "+val("p-for")+"\n\n2. Political/military: "+val("p-against1")+"\n\n3. Ideology/international: "+val("p-against2")+"\n\nChange over time: "+val("p-change")+"\n\nConclusion: "+val("p-concl")+(val("p-hl")?"\n\nComparison with Italy: "+val("p-hl"):"")+(val("pf-got")?"\n\nPeer feedback received: "+val("pf-got")+"\nWhat I will change: "+val("pf-do"):""),
+  report:()=>{
+    const path=store.get("path","core"); const sa=store.get("sa",{}); const q=store.get("quiz",{});
+    const qs=Object.keys(q).filter(i=>q[i]===QUIZ[i][2]).length; const sim=store.get("sim",{choices:[]});
+    const lv={"1":"not yet","2":"partly","3":"confidently"};
+    return "PROGRESS REPORT — Japanese Empire 1894–1941\n"+
+      `Path: ${path}\nRoute: ${ROUTE.filter(r=>r.done()).length}/${ROUTE.length} done\n`+
+      ROUTE.map(r=>`  [${r.done()?"x":" "}] ${r.label}`).join("\n")+
+      `\nTask 1 order: ${store.get("orderChecked",false)?store.get("orderScore",0)+"/10":"not checked"}`+
+      `\nQuiz: ${qs}/${QUIZ.length} correct (${Object.keys(q).length} answered)`+
+      `\nSimulation: ${store.get("simDone",false)?`followed history ${sim.choices.filter((c,i)=>c===SIM[i].hist).length}/${SIM.length}`:"not finished"}`+
+      (val("simReflect")?`\n  Reflection: ${val("simReflect")}`:"")+
+      `\nPoint of no return: ${store.get("vote","—")}${val("voteWhy")?" — "+val("voteWhy"):""}`+
+      "\n\nSelf-assessment:\n"+GOALS.map(([g,t])=>`  ${g} ${t}: ${lv[sa[g]]||"—"}`).join("\n")+
+      "\n\nExit ticket\n3 events: "+val("x3")+"\n2 causes: "+val("x2")+"\n1 question: "+val("x1");
+  },
+  feedback:()=>"FEEDBACK ON THE MATERIAL (Japanese Empire 1894–1941)\nUseful (1–5): "+(store.get("fbRate","—"))+"\nHardest/unclear: "+val("fb-hard")+"\nImprovement idea: "+val("fb-idea")
+};
+document.addEventListener("click",async e=>{
+  const b=e.target.closest("[data-copy]"); if(!b) return;
+  const k=b.dataset.copy, st=document.getElementById("copy-"+k), text=COPY[k]();
+  try{ await navigator.clipboard.writeText(text); st.textContent="Copied. Paste it into your class workspace."; }
+  catch(err){
+    let ta=document.getElementById("fallback-"+k);
+    if(!ta){ ta=el("textarea",{rows:"6",readonly:"readonly",id:"fallback-"+k,"aria-label":"Text to copy"}); st.parentNode.after(ta); }
+    ta.value=text; st.textContent="Copying was blocked. Select the text below and copy it with Ctrl+C."; ta.focus(); ta.select();
+  }
+});
+$("#clearData").addEventListener("click",()=>{
+  try{ Object.keys(localStorage).filter(k=>k.startsWith(PREFIX)).forEach(k=>localStorage.removeItem(k)); }catch(e){}
+  $("#clearStatus").textContent="Your saved answers were deleted from this browser. The page will now reload.";
+  setTimeout(()=>{ try{ location.reload(); }catch(e){} },900);
+});
+
+/* ---------- Boot ---------- */
+drawReadButtons(); drawEmpire(); drawTimeline(); drawP1(); drawOrder(); drawGauge(); drawVote(); drawSim(); drawSelfAssess(); drawQuiz(); drawGloss(); drawFeedback();
+persistFields(); drawPaths(); refreshProgress(); scrollSpy();
+document.addEventListener("input",refreshProgress);
+})();
+</script>
+</body>
+</html>
